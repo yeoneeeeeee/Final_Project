@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="member">
+	
+	<resultMap id="memberResultSet" type="member">
+		<id column="USER_NO" property="userNo"/>
+		<result column="USER_ID" property='userId'/>
+		<result column="USER_PWD" property="userPwd"/>
+		<result column="USER_NAME" property="userName"/>
+		<result column="USER_NICK" property="userNick"/>
+		<result column="USER_PHONE" property="userPhone"/>
+		<result column="USER_EMAIL" property="userEmail"/>
+		<result column="USER_MBTI" property="userMbti"/>
+		<result column="ENROLL_DATE" property="enrollDate"/>
+		<result column="USER_BIRTHDAY" property="userBirthday"/>
+		<result column="ENABLE" property="enable"/>
+		<result column='WB_STATUS' property="wbStatus"/>
+		<result column="STATUS" property="status"/>
+		<result column="CHECK_LOGIN" property="checkLog"/>
+	</resultMap>
+	
+	<resultMap id="imagesResultSet" type="images">
+		<id column="FILE_NO" property="fileNo"/>
+		<result column="FILE_WRITER" property='fileWriter'/>
+		<result column="ORIGIN_NAME" property="originName"/>
+		<result column="CHANGE_NAME" property="changeName"/>
+		<result column="FILE_PATH" property="filePath"/>
+		<result column="STATUS" property="status"/>
+		<result column="FILE_LEVEL" property="fileLevel"/>
+		<result column="FILE_FNO" property="fileFno"/>
+	</resultMap>  
+	
+	<resultMap id="friendResultSet" type="friend">
+		<id column="FRIEND_NO" property="friendNo"/>
+		<result column="FRIEND_USER1" property='friendUser1'/>
+		<result column="FRIEND_USER2" property="friendUser2"/>
+		<result column="ENABLE" property="enable"/>
+	</resultMap>  
+	
+	<resultMap id="choiceResultSet" type="choice">
+  		<id column="CHOICE_NO" property="choiceNo"/>
+      <result column="CHOICE_FNO" property='choiceFno'/>
+      <result column="CHOICE_MEMBER" property="choiceMember"/>
+      <result column="CHOICE_STATUS" property="choiceStatus"/>
+  </resultMap>
+  
+  <resultMap id="replyResultSet" type="reply">
+		<id column="REPLY_NO" property="replyNo"/>
+		<result column="REPLY_WRITER" property='replyWriter'/>
+		<result column="REPLY_CONTENT" property="replyContent"/>
+		<result column="REPLY_FNO" property="replyFno"/>
+		<result column="ENROLL_DATE" property="enrollDate"/>
+		<result column="STATUS" property="status"/>
+	</resultMap>
+ 	<select id="selectOne" parameterType="String" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER
+		WHERE USER_ID = #{userId} AND STATUS = 'Y'
+	</select>
+	
+	<select id="selectOneByUserNo" parameterType="int" resultMap="memberResultSet">
+     	SELECT *
+		FROM MEMBER m
+		JOIN IMAGE ON(FILE_WRITER = USER_NO)
+		WHERE USER_NO = #{userNo} AND m.STATUS = 'Y' AND FILE_LEVEL = 1
+   </select>
+	
+	<select id="loginUser" parameterType="member" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER
+		WHERE USER_ID= #{userId} AND USER_PWD = #{userPwd} AND STATUS = 'Y'
+	</select>
+	
+	<select id="idCheck" parameterType="string" resultType="int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE USER_ID= #{userId}
+	</select>
+	
+	<insert id="insertMember" parameterType="member">
+		INSERT INTO MEMBER VALUES(
+			SEQ_MEMBER_NO.NEXTVAL,
+			#{userId},
+			#{userPwd},
+			#{userName},
+			#{userNick},
+			#{userPhone},
+			#{userEmail},
+			#{userMbti},
+			SYSDATE,
+			#{userBirthday},
+			DEFAULT,
+			DEFAULT,
+			DEFAULT,
+			DEFAULT
+		)
+	</insert>
+	
+	<select id="selectListImages" parameterType="int" resultMap="imagesResultSet">
+		SELECT *
+		FROM IMAGE
+		WHERE FILE_WRITER = #{userNo}
+			AND FILE_LEVEL = 1
+	</select>
+	
+	<select id="selectListMyImg" parameterType="int" resultMap="imagesResultSet">
+		SELECT *
+		FROM IMAGE
+		JOIN FEED ON FEED_NO = FILE_FNO
+		WHERE FILE_WRITER = #{userNo}
+			AND FILE_LEVEL = 2
+		ORDER BY FILE_NO
+	</select>
+	
+	<select id="detailMyFeedModal" parameterType="int" resultMap="imagesResultSet">
+		SELECT DISTINCT FILE_NO, FILE_LEVEL, FILE_PATH, CHANGE_NAME, LIKE_COUNT, USER_NICK, LIKE_FNO, CHOICE_FNO, FRIEND_USER1, FEED_WRITER, FILE_FNO
+				,FEED_CONTENT, FEED_HASHTAG
+		FROM IMAGE
+		LEFT JOIN FEED ON FEED_NO = #{imgNo}
+		LEFT JOIN MEMBER ON USER_NO = FILE_WRITER
+		LEFT JOIN LIKE_TABLE ON LIKE_FNO = #{imgNo}
+        LEFT JOIN CHOICE ON CHOICE_FNO = #{imgNo}
+        LEFT JOIN FRIEND ON FEED_WRITER = FRIEND_USER1
+		WHERE FILE_FNO = #{imgNo} OR (FILE_LEVEL = 1 AND FILE_WRITER = (
+                                                                SELECT FEED_WRITER
+                                                                FROM FEED
+                                                                WHERE FEED_NO = #{imgNo}
+                                                                ))
+        ORDER BY FILE_LEVEL
+	</select>
+	
+	<select id="sideFriendList" parameterType="int" resultMap="friendResultSet">
+		SELECT FRIEND_USER1, FRIEND_USER2
+		FROM FRIEND
+		WHERE FRIEND_USER1 = #{userNo}
+	</select>
+	
+	<select id="selectFriendList2" parameterType="friend" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER M
+		LEFT JOIN IMAGE I ON FILE_WRITER = M.USER_NO AND FILE_LEVEL = 1
+		WHERE M.USER_NO = (
+							SELECT FRIEND_USER1
+							FROM FRIEND
+							WHERE FRIEND_USER1 = #{friendUser2} AND FRIEND_USER2 = #{friendUser1}				
+							)
+	</select>
+	
+	<select id="checkMember" parameterType="int" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER
+		LEFT JOIN IMAGE ON FILE_WRITER = USER_NO
+		WHERE USER_NO = #{userNo}  AND FILE_LEVEL = 1
+	</select>
+	
+	<select id="updateMember" parameterType="member">
+		UPDATE MEMBER
+		SET USER_NAME = #{userName},
+		 	 USER_NICK = #{userNick},
+		 	 USER_BIRTHDAY = #{userBirthday},
+		 	 USER_MBTI = #{userMbti},
+		 	 USER_EMAIL = #{userEmail},
+		 	 USER_PHONE = #{userPhone},
+		 	 ENROLL_DATE = SYSDATE
+		WHERE USER_NO = #{userNo}
+	</select>
+	
+	<select id="updateProfileImg" parameterType="member">
+		UPDATE IMAGE
+		SET FILE_PATH = #{filePath},
+			CHANGE_NAME = #{changeName},
+			ORIGIN_NAME = #{originName}
+		WHERE FILE_WRITER = #{userNo} AND FILE_LEVEL = 1
+	</select>
+	
+	<insert id="insertProFileImg">
+		INSERT INTO IMAGE
+		VALUES (SEQ_FILE_NO.NEXTVAL,
+				SEQ_MEMBER_NO.CURRVAL,
+				'DefaultIcon',
+				'DefaultIcon',
+				'DefaultIcon',
+				DEFAULT,
+				1,
+				0
+				
+				)
+	</insert>
+	
+	<update id="changePwd" parameterType="member">
+		UPDATE MEMBER
+		SET USER_PWD = #{userPwd}
+		WHERE USER_NO = #{userNo}
+	</update>
+	
+	<update id="deleteUser" parameterType="member">
+		UPDATE MEMBER
+		SET STATUS = 'N'
+		WHERE USER_NO = #{userNo}
+	</update>
+	
+	<select id="logincheck" parameterType="member"  resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER
+		WHERE USER_ID= #{userId} AND STATUS = 'Y'
+	</select>
+	
+	<update id="loginPwdReset" parameterType="member">
+		UPDATE MEMBER
+		SET USER_PWD = '$2a$10$VC/SNhYAZHbEdNIDOTkfpusMw0m9KeRvUs2lTUVkDU/4J/P9ct5Ke'
+		WHERE USER_ID = #{userId}
+	</update>
+	
+	<update id="updateUserLoginStatus" parameterType="member">
+		UPDATE MEMBER
+		SET CHECK_LOGIN = #{checkLog}
+		WHERE USER_NICK = #{userNick}
+	</update>
+	
+	<select id="selectAll" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER
+	</select>
+	
+	
+	<select id="searchFollowList" parameterType="Int" resultMap="memberResultSet">
+	   	SELECT DISTINCT M.USER_ID, M.USER_NICK, I.FILE_PATH, I.CHANGE_NAME, M.USER_NO
+	    FROM "MEMBER" M
+	    LEFT JOIN FRIEND F ON F.FRIEND_USER1 = M.USER_NO
+	    LEFT JOIN IMAGE I ON M.USER_NO = I.FILE_WRITER
+	    WHERE F.FRIEND_USER2 = #{userNo} AND I.FILE_LEVEL = 1
+   </select>
+
+    <select id="searchFollowerList" parameterType="Int" resultMap="memberResultSet">
+	     SELECT DISTINCT M.USER_ID, M.USER_NICK, I.FILE_PATH, I.CHANGE_NAME , M.USER_NO
+		FROM "MEMBER" M
+	    LEFT JOIN FRIEND F ON F.FRIEND_USER2 = M.USER_NO
+	   	LEFT JOIN IMAGE I ON M.USER_NO = I.FILE_WRITER
+	   	WHERE F.FRIEND_USER1 = #{userNo} AND I.FILE_LEVEL = 1
+   </select>
+   
+   <select id="searchFollowerImageList" parameterType="Int" resultMap="imagesResultSet">
+		SELECT I.FILE_PATH, I.CHANGE_NAME, M.USER_NO , M.USER_ID
+   		FROM IMAGE I
+   		JOIN "MEMBER" M ON M.USER_NO = I.FILE_WRITER
+   		WHERE I.FILE_WRITER = #{userNo} AND M.USER_NO = #{userNo} AND M.STATUS = 'Y'
+   </select>				
+
+	<delete id="unFollow" parameterType="Map">
+		DELETE 
+		FROM FRIEND F
+		WHERE FRIEND_USER1 = #{userNo} AND FRIEND_USER2 = #{loginUserNo}
+	</delete>
+
+	<insert id="addFollow" parameterType="Map">
+		INSERT INTO FRIEND VALUES(
+			
+			SEQ_FRIEND_NO.NEXTVAL,
+			#{userNo},
+			#{loginUserNo},
+			DEFAULT
+			)
+	</insert>
+	
+	<select id="recommandFollowList" parameterType="int" resultMap="memberResultSet">
+		 <![CDATA[
+		SELECT M.USER_NO, M.USER_NAME, I.FILE_PATH, I.CHANGE_NAME, M.USER_NICK
+		FROM "MEMBER" M
+		JOIN IMAGE I ON M.USER_NO = I.FILE_WRITER AND I.FILE_LEVEL = 1
+		WHERE M.USER_NO <> #{userNo}
+			AND M.USER_NO NOT IN  (
+		        SELECT DISTINCT FRIEND_USER1 AS FRIEND_USER
+		        FROM FRIEND 
+		        WHERE FRIEND_USER1 = #{userNo} OR FRIEND_USER2 = #{userNo}
+		        UNION
+		        SELECT DISTINCT FRIEND_USER2 AS FRIEND_USER
+		        FROM FRIEND 
+		        WHERE FRIEND_USER1 = #{userNo} OR FRIEND_USER2 = #{userNo} 
+		    ) AND USER_NO != 999
+		]]>
+	</select> 
+	
+	<select id="feedMember" parameterType="int" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER M
+		LEFT JOIN IMAGE I ON M.USER_NO = I.FILE_WRITER AND I.FILE_LEVEL = 1
+		JOIN FEED F ON F.FEED_WRITER = M.USER_NO
+		WHERE FEED_NO = #{feedNo}		
+	</select>
+	
+	<select id="myChoiceList" parameterType="int" resultMap="choiceResultSet">
+		SELECT *
+		FROM CHOICE
+		LEFT JOIN IMAGE ON CHOICE_FNO = FILE_FNO AND FILE_LEVEL = 2
+		LEFT JOIN FEED ON FEED_NO = CHOICE_FNO
+		WHERE CHOICE_MEMBER = #{userNo}
+	</select>
+	
+	<select id="detailReply" parameterType="int" resultMap="replyResultSet">
+		SELECT *
+		FROM REPLY
+		JOIN MEMBER ON REPLY_WRITER = USER_NO
+        JOIN IMAGE ON USER_NO = FILE_WRITER AND FILE_LEVEL = 1
+		WHERE REPLY_FNO = #{imgNo}
+		ORDER BY REPLY_NO DESC
+	</select>
+	
+	<insert id="insertReplyMy" parameterType="map">
+		INSERT INTO REPLY
+		VALUES(
+			SEQ_REPLY_NO.NEXTVAL,
+			${userNo},
+			'${replyContent}',
+			${feedNo},
+			SYSDATE,
+			'Y'
+		)
+	</insert>
+	
+	<select id="latelyReply" parameterType="map" resultMap="replyResultSet">
+		SELECT *
+		FROM REPLY
+		JOIN MEMBER ON REPLY_WRITER = USER_NO
+        JOIN IMAGE ON USER_NO = FILE_WRITER AND FILE_LEVEL = 1
+		WHERE REPLY_CONTENT = #{replyContent}
+	</select>
+	
+</mapper>

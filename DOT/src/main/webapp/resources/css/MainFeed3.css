@@ -1,0 +1,1332 @@
+body {
+    margin : 0;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+
+
+.wrap {
+    height: 100vh;
+    overflow: hidden;
+    background-color: black;
+}
+
+
+
+/* ============================================================= */
+/* 컨텐츠 영역 */
+/* ============================================================= */
+.contents {
+    display: flex;
+    justify-content: end;
+    min-width: 1600px;
+    width: 100%;
+    height: calc(100vh - 80px);
+    /* border: 1px solid white; */
+}
+
+/* ============================================================= */
+/* 메인 컨텐츠 */
+/* ============================================================= */
+
+.main-content {
+    width: 40%;
+    min-width: 800px;
+    height: 100%;
+    /* border-left: 1px solid rgba(255,255,255,0.3); */
+    /* border-right: 1px solid rgba(255,255,255,0.3); */
+}
+
+.feed-list {
+    height: 91vh;
+    overflow: auto;
+}
+
+.feed-wrap{
+    width: 60%;
+    margin: 45px;
+    border: 1px solid rgba(255, 255, 255, 0.146);
+    border-radius: 20px;
+}
+
+.feed-header {
+    height: 70px;
+    width: 100%;
+    color : white;
+    position: relative;
+}
+
+
+.user-profile .more-options {
+    display: none;
+    position: absolute;
+    right: -40px;
+    top: 60px;
+    width: 160px;
+    z-index: 50;
+    overflow: hidden;
+}
+
+.more-options>div {
+    border: 1px solid rgba(255, 255, 255, 0.146);
+    border-radius: 15px;
+    background-color: black;
+    line-height: 30px;
+}
+
+.more-options dl {
+    margin: 15px 15px;
+    font-size: 13px;
+    line-height: 35px;
+}
+
+.more-options dt {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    padding: 3px 0 0 6px;
+    transition: all .25s;
+    cursor: pointer;
+}
+
+.more-options dt:hover { 
+    transition: all .25s;
+    background-color: rgba(115,115,115, 0.4);
+    border-radius: 10px;
+}
+
+.more-options span {
+    font-size: 20px;
+}
+
+.more-options a {
+    margin-left: 10px;
+}
+
+.user-profile {
+    width: 95%;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content : space-between;
+    align-items: center;
+}
+
+.user-profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    margin-left: 10px;
+    background-color: white;
+}
+
+.user-profile span:nth-child(2) {
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.user-profile span:nth-child(2):hover {
+    text-decoration: underline;
+}
+
+.user-profile>span {
+    font-size: 35px;
+    font-weight: 900;
+    cursor: pointer;
+    margin-right : 10px;
+}
+
+
+
+
+
+
+.feed-body {
+    width: 100%;
+}
+
+.feed-img{
+    height: 430px;
+}
+
+.feed-body img{
+    display: none;
+    width: 100%;
+    margin: 0 auto;
+    height: 430px;
+    object-fit:contain;
+}
+
+.feed-tools {
+    width: 100%;
+    margin: auto;
+    padding: 15px;
+    color:white;
+    display: flex;
+    align-items: end;
+    z-index: 100;
+}
+
+
+.feed-tools svg {
+    margin-left: 10px;
+}
+
+.feed-body .feed-tools .clickable-svg:nth-child(1) {
+    z-index: 10;
+    cursor: pointer;
+}
+
+.feed-body .feed-tools .clickable-svg:nth-child(2) {
+    z-index: 10;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.bi-heart-fill {
+    transition: fill .5s;
+    color: red;
+}
+
+.feed-body .feed-tools .clickable-svg:nth-child(3) {
+    z-index: 10;
+    font-size: 25px;
+    margin-left: 73%;
+    cursor: pointer;
+}
+
+.feed-text {
+    width: 91%;
+    margin: auto;
+    color: rgb(179, 179, 179);
+    font-size: 12px;
+    line-height: 24px;
+    word-wrap: break-word;
+    margin-left: 20px;
+}
+.feed-content{
+	 width: 91%;
+    margin: auto;
+    color: rgb(179, 179, 179);
+    font-size: 12px;
+    line-height: 24px;
+    word-wrap: break-word;
+    margin-left: 20px;
+}
+
+.feed-content>.bold{
+	color:white;
+/* 	font-size:14px; */
+}
+
+.feed-text span:nth-child(3) {
+    width: 100%;
+    font-size: 13px;
+    color: white;
+}
+
+.feed-text span:nth-child(5) {
+    margin-top: 3px;
+    color: rgb(124, 124, 158) !important;
+}
+
+.feed-footer {
+    /* height: 170px; */
+    padding-bottom: 20px;
+    width: 100%;
+}
+
+.reply-wrap{
+    color: white;
+}
+
+.reply-top button {
+    font-size: 13px;
+    margin: 15px 0 0;
+    width: 100px;
+    background-color: transparent;
+    border: 0;
+    color: rgb(183, 183, 183);
+    cursor: pointer;
+    transition: all .15s;
+}
+
+.reply-top button:hover {
+    font-weight: 700;
+    color: white;
+    transition: all .15s;
+}
+
+.reply-middle {
+    width: 100%;
+    /* height: 60px; */
+    margin: 10px auto;
+}
+
+.reply-middle dl {
+    margin: 0;
+    display : flex;
+    flex-direction : column;
+}
+
+.reply-feed-middle dl {
+    height : 50px;
+	overflow :hidden;
+}
+
+.reply-middle dt {
+    margin: auto;
+    width: 90%;
+    display: flex;
+    padding: 2px 10px;
+    align-items: center;
+    transition: all .25s;
+}
+
+.reply-middle dt:hover {
+    background-color: rgba(115,115,115, 0.2);
+    transition: all .25s;
+    border-radius: 15px;
+}
+
+.reply-middle img{
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+}
+
+.reply-list {
+    display: flex;
+    margin-left: 15px ;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    font-size: 14px;
+    color: lightgray;
+}
+
+.reply-list span:last-child {
+    color: gray;
+    font-size: 13px;
+}
+
+.reply-bottom {
+    width: 93%;
+    padding-top: 6px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(255, 255, 255, 0.146);
+}
+
+.reply-bottom input {
+    margin-top: 10px;
+    width: 85%;
+    height: 33px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.146);
+    padding-left: 10px;
+    background-color: transparent;
+    color: gray;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.reply-bottom input:focus{
+    outline: 0;
+}
+
+.reply-bottom button {
+    margin-top: 10px;
+    height: 33px;
+    background-color: transparent;
+    color: lightgray;
+    border: 0;
+}
+
+
+/* ============================================================= */
+/* 피드 모달  */
+/* ============================================================= */
+
+#feedDetail>.modal-dialog> .modal-content {
+    border : 1px solid rgba(255,255,255,0.3)!important;
+    background-color: rgb(0, 0, 0) !important;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-header {
+    width: 65% !important;
+    /* margin-right: 5% !important; */
+    border-bottom: 1px solid rgba(255,255,255,0.3) !important;
+    border-right: 1px solid rgba(255,255,255,0.3) !important;
+    position: relative;
+}
+
+#feedDetail>.modal-dialog .modal-user-profile {
+    width: 680px;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content : space-between;
+    align-items: center;
+    margin-left: 10px;
+}
+
+#feedDetail>.modal-dialog .modal-user-profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    margin-left: 10px;
+    background-color: white;
+}
+
+#feedDetail>.modal-dialog .modal-user-profile>div>span:nth-child(2) {
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.modal-user-profile>div>span:nth-child(2):hover {
+    text-decoration: underline;
+}
+
+.modal-user-profile>span {
+    font-size: 35px;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+
+.modal-close {
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border: 0px;
+    color: white;
+    font-weight: 500;
+    font-size: 26px;
+}
+
+
+.modal-user-profile .modal-more-options {
+    display: none;
+    position: absolute;
+    right: 20px;
+    top: 50px;
+    width: 160px;
+    z-index: 50;
+    overflow: hidden;
+}
+
+.modal-more-options>div {
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 15px;
+    background-color: black;
+    line-height: 30px;
+}
+
+.modal-more-options dl {
+    margin: 15px 15px;
+    font-size: 13px;
+    line-height: 35px;
+}
+
+.modal-more-options dt {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    padding: 3px 0 0 6px;
+    transition: all .25s;
+    
+}
+
+.modal-more-options dt:hover { 
+    transition: all .25s;
+    background-color: rgba(115,115,115, 0.4);
+    border-radius: 10px;
+}
+
+.modal-more-options span {
+    font-size: 25px;
+    font-weight : 500;
+}
+
+.modal-more-options a {
+    margin-left: 10px;
+}
+
+
+.modal-more-options .follow-control-js div{
+   display : flex;
+   align-items : center;
+}
+
+
+#feedDetail>.modal-dialog>.modal-content .modal-body {
+    display: flex;
+    height: 650px;
+    /* border-top: 1px solid rgba(255,255,255,0.3); */
+    padding: 0 !important;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body {
+    width: 65%;
+    border-right: 1px solid rgba(255,255,255,0.3);
+}
+
+#feedDetail .clickable-svg .bi-heart-fill {
+    color: red;
+}
+
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body img{
+    width: 100%;
+    margin: 0 auto;
+    height: 430px;
+    object-fit:contain;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body .feed-tools {
+    border-top: 1px solid rgba(255,255,255,0.3) !important;
+    margin: 5px auto 0;
+    padding: 15px;
+    color:white;
+    display: flex;
+    align-items: center;
+}
+
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body .feed-tools svg {
+    margin-left: 10px;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body .feed-tools .clickable-svg:nth-child(1) {
+    cursor: pointer;
+    z-index: 10;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body .feed-tools .clickable-svg:nth-child(2) {
+    margin-left: 20px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body .feed-tools .clickable-svg:nth-child(3) {
+    font-size: 25px;
+    z-index: 10;
+    margin-left: 80%;
+    cursor: pointer;
+}
+
+#feedDetail>.modal-dialog>.modal-content .more-options .choice-control-js svg{
+	position:absolute;
+	top : 27px;
+	left : 20px;
+	}
+
+#feedDetail>.modal-dialog>.modal-content .choice-control-js a{
+	margin :0 0 0 32px;
+}
+
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body .feed-text {
+    width: 91%;
+    margin: auto;
+    color: rgb(179, 179, 179);
+    font-size: 13px;
+    line-height: 24px;
+    word-wrap: break-word;
+    margin-left: 20px;
+}
+
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body .feed-text span:nth-child(3) {
+    width: 100%;
+    font-size: 15px;
+    color: white;
+}
+
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer {
+    width: 35%;
+    padding-bottom: 20px;
+    position: relative;
+}
+
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-wrap{
+    width: 100%;
+    height: 110%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    top: -90px;;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-middle {
+    width: 100%;
+    height: 100%;
+    margin: 10px auto;
+    overflow-y: auto;
+    height: 80vh;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-middle dl {
+    margin: 20px 0 20px;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-middle dt {
+    margin: auto;
+    width: 90%;
+    display: flex;
+    height: 50px;
+    padding: 2px 10px;
+    align-items: center;
+    transition: all .25s;
+    margin-top : 0.3rem;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-middle dt:hover {
+    background-color: rgba(115,115,115, 0.2);
+    transition: all .25s;
+    border-radius: 15px;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-middle img{
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-list {
+    display: flex;
+    margin-left: 15px ;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    font-size: 14px;
+    color: lightgray;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-list span:last-child {
+    color: gray;
+    font-size: 13px;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-bottom {
+    width: 93%;
+    padding-top: 6px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* border-top: 1px solid rgba(255,255,255,0.3); */
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-bottom input {
+    margin-top: 10px;
+    width: 85%;
+    height: 33px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.3);
+    padding-left: 10px;
+    background-color: transparent;
+    color: white;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-bottom input:focus{
+    outline: 0;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-bottom button {
+    margin-top: 10px;
+    height: 33px;
+    background-color: transparent;
+    color: lightgray;
+    border: 0;
+}
+
+#feedDetail>.modal-dialog>.modal-content .noReply {
+	width : 100%;
+	display : flex;
+	align-items : center;
+	justify-content : center;
+	margin-top : 300px;
+	font-size : 14px;
+	color : gray;
+	
+}
+
+
+/* ============================================================= */
+/* 공유 모달  */
+/* ============================================================= */
+
+.shareTool  .modal-content , #shareToolMain  .modal-content {
+    background-color: black !important;
+    border: 1.5px solid rgba(255,255,255,0.3) !important;
+    border-radius: 15px !important;
+    color: white;
+    width: 400px !important;
+}
+
+.shareTool .modal-header, #shareToolMain .modal-header {
+    text-align: center !important;
+    border-bottom: 1.5px solid rgba(255,255,255,0.3) !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.shareTool .modal-header>h5, #shareToolMain .modal-header>h5 {
+    font-size: 16px !important;
+}
+
+.shareTool .modal-header>form, #shareToolMain .modal-header>form {
+    width: 100%;
+}
+
+.shareTool .modal-header input[type=search], #shareToolMain .modal-header input[type=search]{
+    margin-top: 20px;
+    width: 100%;
+    height: 40px;
+    background-color: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 10px;
+    font-size: 14px;
+    padding-left: 20px;
+}
+
+.shareTool .modal-header input[type=search]:focus , #shareToolMain .modal-header input[type=search]:focus {
+    outline: 0;
+    color: white;
+}
+
+.shareTool .modal-body, #shareToolMain .modal-body {
+    width: 100%;
+    height: 500px !important;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.shareTool .list-btn, #shareToolMain .list-btn  {
+    width: 100%;
+    display: flex;
+    text-align: center;
+}
+
+.shareTool .modal-body .list-btn span, #shareToolMain .modal-body .list-btn span  {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 40px;
+    width: 50%;
+    border: 1px solid rgba(255,255,255,0.3);
+    font-size: 14px;
+    color: gray;
+}
+
+.shareTool .modal-body .list-btn>span:hover, #shareToolMain .modal-body .list-btn>span:hover {
+    color:black;
+    background-color: rgb(204, 204, 204) !important;
+    transition: all .35s;
+}
+
+.shareTool .modal-body .lists, #shareToolMain .modal-body .lists {
+    overflow: auto !important;
+}
+
+.shareTool .focus-btn, #shareToolMain .focus-btn {
+    color:black !important;
+    background-color: rgb(204, 204, 204) !important;
+    transition: all .35s;
+}
+
+.shareTool .modal-body .follower-list,
+#shareToolMain .modal-body .follower-list,
+.shareTool .modal-body .chatting-list,
+#shareToolMain .modal-body .chatting-list {
+    margin-top: 10px;
+    height: 100%;
+    padding-bottom: 50px;
+}
+
+.shareTool .modal-body .follower-list dt,
+#shareToolMain .modal-body .follower-list dt,
+.shareTool .modal-body .chatting-list dt,
+#shareToolMain .modal-body .chatting-list dt {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content : space-between;
+    margin-top: 18px;
+}
+
+.shareTool .follower-list dt img, #shareToolMain .follower-list dt img{
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+}
+
+.shareTool .chatting-list dt img, #shareToolMain .chatting-list dt img {
+	width: 17px;
+    height: 17px;
+    border-radius: 18px;
+}
+
+.shareTool .follower-list dt label,
+#shareToolMain .follower-list dt label,
+.shareTool .chatting-list dt span,
+#shareToolMain .chatting-list dt span{
+    font-size: 15px;
+    font-weight: 500;
+    margin-left: 18px;
+    color: lightgray;
+    margin : auto;
+    margin-left : 20px;
+}
+
+.shareTool .follower-list dt input[type=checkbox],
+#shareToolMain .follower-list dt input[type=checkbox],
+.shareTool .chatting-list dt input[type=checkbox],
+#shareToolMain .chatting-list dt input[type=checkbox] {
+    width: 15px;
+    height: 15px;
+    border: 1px solid rgba(115,115,115, 0.3) !important;
+    border-radius: 9px !important;
+    background-color: transparent !important;
+}
+
+.shareTool .follower-list dt>div,
+#shareToolMain .follower-list dt>div,
+.shareTool .chatting-list dt>div,
+#shareToolMain .chatting-list dt>div {
+	display:flex;
+}
+
+.shareTool .userCount, #shareToolMain .userCount {
+	width: 36px;
+    height: 36px;
+	display : grid;
+	grid-template-rows:repeat(2, 17px);
+	grid-template-columns:repeat(2, 17px);
+	gap : 1px;
+	justify-content : center;
+	align-items : center;
+	overflow:hidden;
+}
+
+
+.shareTool dt .titleWrap, #shareToolMain dt .titleWrap {
+	width : 250px;
+	white-space:nowrap;
+	overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.shareTool .modal-footer, #shareToolMain .modal-footer {
+    border: 0 !important;
+}
+
+.shareTool .modal-footer button, #shareToolMain .modal-footer button {
+    width: 100px;
+    padding: 5px 15px !important;
+    border-radius: 7px;
+    border: 1px solid rgba(255,255,255, 0.3) !important;
+    color: lightgray;
+    background-color: transparent !important;
+}
+
+.shareTool .modal-footer button:hover,
+#shareToolMain .modal-footer button:hover {
+    color:black;
+    background-color: rgb(204, 204, 204) !important;
+    transition: all .35s;
+}
+
+.shareTool .empty-follow-info,
+#shareToolMain .empty-follow-info {
+	width : 100%;
+	height : 400px;
+	display : flex;
+	align-items : center;
+	justify-content : center;
+}
+
+.shareTool .empty-follow,
+#shareToolMain .empty-follow {
+	color : gray;
+	font-weight : 400;	
+}
+
+.chatting-share-modal{
+	margin-top:110px !important;
+}
+
+
+
+/* ============================================================= */
+/* 서브 컨텐츠  */
+/* ============================================================= */
+.sub-content {
+    width: 30%;
+    min-width: 400px;
+    height: 100%;
+    /* border: 1px solid white; */
+}
+
+.sub-wrap {
+    width: 350px;
+    height: 500px;
+    margin-top: 70px;
+    border-radius: 20px;
+    /* background-color: white; */
+}
+.Ranking {
+    color: white;
+    text-align: center;
+    margin: 30px 15px;
+}
+
+.Rangking_Title{
+    font-size:25px;
+}
+.Ranking_Content{
+    display:flex;
+}
+.num{
+    font-size:15px;
+}
+.Ranking_Num{
+    font-size:15px;
+    margin-left:30px;
+}
+
+.main-header-alarm{
+	margin-top:7% !important;
+}
+
+.header-icon-my{
+	margin-left:20px;
+}
+
+.sub-content {
+    width: 25vw;
+    height: 100%;
+    
+    /* border: 1px solid white; */
+}
+
+.sub-wrap {
+    width: 390px;
+    height: 100%;
+    margin-top: 70px;
+    /* border: 1px solid rgba(255,255,255,0.3); */
+    /* background-color: white; */
+    border-radius: 20px;
+}
+
+/* .sub-wrap *{
+    border: 1px solid grey;
+} */
+
+.sub-container{
+    margin-left: 15%; /* sy - search.html���� �߰��� �κ�*/
+    width: 100%;
+    height: 100%;
+}
+
+.sub-recommand{
+    width: 100%;
+    height: 532px;
+    background-color: rgb(33,33,33);
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    margin-left: -135px;
+}
+.sub-title{
+    color: gray;
+    width:390px;
+    height: 40px;
+    position: fixed;
+    display: flex;
+    align-items: end;
+}
+.sub-title>span{
+    margin-left: 30px;
+}
+.sub-recommand .user-nickname{
+    width: 190px;
+    color: rgb(165, 165, 165);
+}
+
+.sub-recommand button{
+  	background-color: transparent;
+    border: transparent;
+    color: #0095f6;
+    cursor: pointer;
+    width: 100%;
+    outline : 0px;
+    padding-top : 8px;
+}
+
+.sub-recommand button:hover{
+    background-color: transparent;
+    color:white;
+}
+.sub-content .result-content-area{
+    margin: 60px 0 0px 30px;
+    width: 500px;
+    overflow-y: scroll;
+    height: 500px;
+}
+.sub-content .follow-img{
+    width : 50px;
+    margin : auto 17px auto 0;
+}
+.sub-content .follow-list {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 8px auto;
+    /* justify-content: center; */
+    margin-left:-82px;
+}
+
+.follow-list {
+    display: flex;
+    color: white;
+}
+
+.sub-content .follow-img>img{
+    width: 50px;
+    height: 50px;
+    border-radius: 40px;
+    cursor: pointer;
+}
+.follow-btn {
+    font-weight: 400;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    background-color: black;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.5rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+        box-shadow 0.15s ease-in-out;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.follow-btn10 {
+    font-weight: 400;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    background-color: black;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.5rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+        box-shadow 0.15s ease-in-out;
+    border: 0 !important;
+}
+.sub-content .follow-id{
+    cursor: pointer;
+    line-height: 2;
+    margin-top: 8px;
+}
+
+.sub-content .user-nickname {
+	font-size : 13px;
+	font-weight : 300;
+}
+
+.sub-content .user-id {
+	font-size : 14px;
+	font-weight : 500;
+}
+
+/*----------------------------------------------------------------*/
+
+
+.main-HashTag{
+	margin-top: 3px;
+    color: rgb(124, 124, 158) !important;
+    cursor: pointer;
+}
+
+.main-header-alarm{
+	margin-top:6% !important;
+}
+
+
+/* report Modal */
+#reportBtn .modal-dialog {
+    padding-top: 120px;
+}
+
+#reportBtn .modalstyle {
+    background-color: rgb(44, 44, 44);
+    color: white;
+    border-radius: 15px;
+}
+#reportBtn .modal-bottom {
+    text-align: center;
+    justify-content: center;
+}
+
+#reportBtn .modal-header {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    border-bottom: 1px solid #4a4a4a;
+}
+
+#reportBtn .modal-title {
+    padding-left: 190px;
+    font-size: 16px;
+}
+
+#reportBtn .close_btn_style {
+    border-radius: 0.5rem;
+    background-color: transparent;
+    color: white;
+    border: 0 solid white;
+}
+#reportBtn .report_title {
+    font-size: 16px;
+    padding: 5px;
+    text-align: center;
+}
+#reportBtn .report_content {
+    text-align: center;
+    margin-left: 20px;
+    width: 420px;
+    font-size: 16px;
+    border-radius: 0.5rem;
+}
+.swal-modal {
+    background-color: rgb(44, 44, 44);
+    border: 1px solid rgb(196, 196, 196);
+}
+.swal-text {
+    text-align: center;
+    color: white;
+}
+.swal-title {
+    font-size: 20px;
+    text-align: center;
+    color: white;
+}
+.swal-icon--success:before {
+    display: none;
+}
+.swal-icon--success:after {
+    display: none;
+}
+.swal-icon--success__hide-corners {
+    display: none;
+}
+.btn-box {
+    display: flex;
+    justify-content: center;
+}
+
+#reportBtn .report_content{
+	cursor:pointer;
+}
+
+/* 모달스타일2 */
+
+#detailReport .modal-dialog {
+    padding-top: 120px;
+}
+
+#detailReport .modalstyle {
+    background-color: rgb(44, 44, 44);
+    color: white;
+    border-radius: 15px;
+}
+#detailReport .modal-bottom {
+    text-align: center;
+    justify-content: center;
+}
+
+#detailReport .modal-header {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    border-bottom: 1px solid #4a4a4a;
+}
+
+#detailReport .modal-title {
+    padding-left: 190px;
+    font-size: 16px;
+}
+
+#detailReport .close_btn_style {
+    border-radius: 0.5rem;
+    background-color: transparent;
+    color: white;
+    border: 0 solid white;
+}
+#detailReport .report_title {
+    font-size: 16px;
+    padding: 5px;
+    text-align: center;
+}
+#detailReport .report_content {
+    text-align: center;
+    margin-left: 20px;
+    width: 420px;
+    font-size: 16px;
+    border-radius: 0.5rem;
+}
+.swal-modal {
+    background-color: rgb(44, 44, 44);
+    border: 1px solid rgb(196, 196, 196);
+}
+.swal-text {
+    text-align: center;
+    color: white;
+}
+.swal-title {
+    font-size: 20px;
+    text-align: center;
+    color: white;
+}
+.swal-icon--success:before {
+    display: none;
+}
+.swal-icon--success:after {
+    display: none;
+}
+.swal-icon--success__hide-corners {
+    display: none;
+}
+.btn-box {
+    display: flex;
+    justify-content: center;
+}
+
+/* 신고모달2 */
+/* report Modal */
+#reportBtn1 .modal-dialog {
+    padding-top: 120px;
+}
+
+#reportBtn1 .modalstyle {
+    background-color: rgb(44, 44, 44);
+    color: white;
+    border-radius: 15px;
+}
+#reportBtn1 .modal-bottom {
+    text-align: center;
+    justify-content: center;
+}
+
+#reportBtn1 .modal-header {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    border-bottom: 1px solid #4a4a4a;
+}
+
+#reportBtn1 .modal-title {
+    padding-left: 190px;
+    font-size: 16px;
+}
+
+#reportBtn1 .close_btn_style {
+    border-radius: 0.5rem;
+    background-color: transparent;
+    color: white;
+    border: 0 solid white;
+}
+#reportBtn1 .report_title {
+    font-size: 16px;
+    padding: 5px;
+    text-align: center;
+}
+#reportBtn1 .report_content {
+    text-align: center;
+    margin-left: 20px;
+    width: 420px;
+    font-size: 16px;
+    border-radius: 0.5rem;
+}
+
+#reportBtn1 .report_content{
+	cursor:pointer;
+}
+
+/* 모달스타일2 */
+
+#detailReport1 .modal-dialog {
+    padding-top: 120px;
+}
+
+#detailReport1 .modalstyle {
+    background-color: rgb(44, 44, 44);
+    color: white;
+    border-radius: 15px;
+}
+#detailReport1 .modal-bottom {
+    text-align: center;
+    justify-content: center;
+}
+
+#detailReport1 .modal-header {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    border-bottom: 1px solid #4a4a4a;
+}
+
+#detailReport1 .modal-title {
+    padding-left: 190px;
+    font-size: 16px;
+}
+
+#detailReport1 .close_btn_style {
+    border-radius: 0.5rem;
+    background-color: transparent;
+    color: white;
+    border: 0 solid white;
+}
+#detailReport1 .report_title {
+    font-size: 16px;
+    padding: 5px;
+    text-align: center;
+}
+#detailReport1 .report_content {
+    text-align: center;
+    margin-left: 20px;
+    width: 420px;
+    font-size: 16px;
+    border-radius: 0.5rem;
+}
+
+.add-follow{
+	display: flex;
+    align-items: center;
+}
+.remove-follow{
+	display: flex;
+    align-items: center;
+}

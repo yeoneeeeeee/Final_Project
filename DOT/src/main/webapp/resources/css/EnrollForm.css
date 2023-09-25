@@ -1,0 +1,407 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+* {
+    box-sizing: border-box; /*전체에 박스사이징*/
+    outline: none; /*focus 했을때 테두리 나오게 */
+    font-family: 'Pretendard';
+}
+.logo-box {
+    margin-top: 23%;
+}
+.logo-box img {
+    position: relative;
+    z-index: 5 !important;
+}
+
+body {
+    font-family: 'Pretendard', sans-serif;
+    font-size: 14px;
+    background-color: black;
+    line-height: 1.5em;
+    color: white;
+    margin: 0;
+    background-image: url('../images/6.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+a {
+    text-decoration: none;
+    color: #222;
+}
+
+/*member sign in*/
+.member {
+    width: 600px;
+    /* border: 1px solid #000; */
+    margin: auto; /*중앙 정렬*/
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.member .logo {
+    /*로고는 이미지라 인라인 블록이니까 마진 오토 안됨 블록요소만 됨 */
+    display: block;
+    margin: 60px auto;
+}
+
+.member .field {
+    position: relative;
+    margin: 5px 0 0 0;
+    z-index: 5;
+}
+
+.member b {
+    /* border: 1px solid #000; */
+    display: block; /*수직 정렬하기 */
+    margin-bottom: 5px;
+}
+
+/*input 중 radio 는 width 가 100%면 안되니까 */
+.member input:not(input[type='radio']),
+.member select {
+    border: 1px solid #dadada;
+    padding: 15px;
+    width: 440px;
+}
+
+.member input[type='button'],
+.member input[type='submit'] {
+    background-color: #2db400;
+    color: #fff;
+}
+
+.member input:focus,
+.member select:focus {
+    border: 1px solid #2db400;
+}
+
+.field.birth div {
+    /*field 이면서 birth*/
+    display: flex;
+    gap: 10px; /*간격 벌려줄때 공식처럼 사용핟나 */
+}
+
+/* .field.birth div > * {  gap 사용한거랑 같은 효과를 줌 
+    flex:1;
+} */
+
+.field.tel-number div {
+    display: flex;
+}
+
+.field.tel-number div input:nth-child(1) {
+    flex: 2;
+}
+
+.field.tel-number div input:nth-child(2) {
+    flex: 1;
+}
+
+.field.gender div {
+    border: 1px solid #dadada;
+    padding: 15px 5px;
+    background-color: #fff;
+}
+
+.placehold-text {
+    display: block; /*span 으로 감싸서 크기영역을 블록요소로 만들어ㅜ저야한다*/
+    position: relative;
+    /* border: 1px solid #000; */
+}
+
+.placehold-text:before {
+    content: '@';
+    position: absolute; /*before은 inline 요소이기 때문에 span으로 감싸줌 */
+    right: 20px;
+    top: 13px;
+    pointer-events: none; /*자체가 가지고 있는 pointer event 를 없애준다 */
+}
+
+.member-footer {
+    text-align: center;
+    font-size: 12px;
+    margin-top: 20px;
+}
+
+.member-footer div a:hover {
+    text-decoration: underline;
+    color: #2db400;
+}
+
+.member-footer div a:after {
+    content: '|';
+    font-size: 10px;
+    color: #bbb;
+    margin-right: 5px;
+    margin-left: 7px;
+    /*살짝 내려가 있기 때문에 위로 올려주기 위해 transform 사용하기*/
+    display: inline-block;
+    transform: translateY(-1px);
+}
+
+.member-footer div a:last-child:after {
+    display: none;
+}
+.font-style {
+    font-size: 2px;
+    color: red;
+}
+.font-style2 {
+    font-size: 2px;
+    color: skyblue;
+}
+.btn-box {
+    display: flex;
+    justify-content: center;
+}
+
+#enroll-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.id-form {
+    width: 200px;
+}
+.address-form1 {
+    width: 200px !important;
+    display: inline;
+}
+.table-font {
+    color: black;
+}
+
+.table-font > tr {
+    display: flex;
+    justify-content: center;
+}
+
+.table-font td {
+    width: 100px;
+    text-align: center;
+}
+
+.login-min2 {
+    min-width: 150px;
+}
+.login-min3 {
+	padding: 3px !important;
+}
+.mbti_container {
+    border-radius: 10px;
+    position: relative;
+    z-index: 5;
+}
+.gender-container {
+    height: 50px;
+    text-align: center;
+    width: 200px;
+    position: relative;
+    z-index: 5;
+}
+.chap1 {
+    display: block;
+    margin-top: 3%;
+}
+
+.chap1 button {
+}
+
+.chap2 {
+    display: none;
+}
+
+.chap3 {
+    display: none;
+}
+
+.chap3 button {
+    font-size: 14px;
+}
+
+.form-control {
+    position: relative;
+    z-index: 5 !important;
+}
+.btn2 {
+    position: relative;
+    z-index: 10;
+}
+.btn3 {
+    margin-top: -10px;
+    margin-left: 20px;
+}
+.input_checkform {
+    width: 320px !important;
+    display: inline !important;
+}
+.input_checkform2 {
+    width: 340px !important;
+    display: inline !important;
+}
+
+.btn-box [type='button']:first-child {
+    font-size: 1em;
+    margin: 0 0 30px 0;
+}
+
+.btn-box [type='button']:last-child {
+    font-size: 1em;
+    margin: 0 0 30px 0;
+}
+
+.btn-box [type='submit'] {
+    font-size: 1em;
+    margin: 0 0 30px 0;
+}
+
+@media (max-width: 768px) {
+    .member {
+        width: 100%;
+    }
+}
+/*=============================================================================================*/
+@keyframes fall {
+    0% {
+        opacity: 1;
+        top: 0;
+        transform: rotate(0deg);
+    }
+    50% {
+        opacity: 0.7;
+        top: 50%;
+        transform: rotate(-100deg);
+    }
+    100% {
+        opacity: 0.4;
+        top: 90%;
+        transform: rotate(120deg);
+    }
+}
+@keyframes left01 {
+    0% {
+        margin-left: 0;
+    }
+    50% {
+        margin-left: -25%;
+    }
+    100% {
+        margin-left: -50%;
+    }
+}
+#leaf01 {
+    animation-duration: 9s, 9s;
+    left: 30%;
+    animation-delay: 0s;
+}
+#leaf02 {
+    animation-duration: 12s, 12s;
+    left: 50%;
+    animation-delay: 2s;
+}
+#leaf03 {
+    animation-duration: 22s, 22s;
+    left: 40%;
+    animation-delay: 3s;
+}
+#leaf04 {
+    animation-duration: 14s, 14s;
+    left: 80%;
+    animation-delay: 1.5s;
+}
+#leaf05 {
+    animation-duration: 17s, 17s;
+    left: 60%;
+    animation-delay: 6s;
+}
+#leaf06 {
+    animation-duration: 16s, 16s;
+    left: 77%;
+    animation-delay: 7s;
+}
+#leaf07 {
+    animation-duration: 13s, 13s;
+    left: 90%;
+    animation-delay: 4.5s;
+}
+#leaf08 {
+    animation-duration: 9s, 9s;
+    left: 79%;
+    animation-delay: 1.5s;
+}
+#leaf09 {
+    animation-duration: 11s, 11s;
+    left: 13%;
+    animation-delay: 2s;
+}
+#leaf10 {
+    animation-duration: 7s, 7s;
+    left: 92%;
+    animation-delay: 3s;
+}
+#leaf11 {
+    animation-duration: 15s, 15s;
+    left: 34%;
+    animation-delay: 5.5s;
+}
+#leaf12 {
+    animation-duration: 10s, 10s;
+    left: 67%;
+    animation-delay: 0.5s;
+}
+#leaf13 {
+    animation-duration: 9s, 9s;
+    left: 77%;
+    animation-delay: 2s;
+}
+#leaf14 {
+    animation-duration: 8s, 8s;
+    left: 50%;
+    animation-delay: 4s;
+}
+
+.leaf {
+    position: absolute;
+    top: -10%;
+    animation-name: fall, left01;
+    animation-timing-function: linear;
+    animation-direction: normal;
+    animation-iteration-count: infinite;
+    z-index: 0;
+}
+.blackbox {
+    width: 100%;
+    height: 4%;
+    background-color: black;
+    position: absolute;
+    z-index: 5;
+    margin-top: -16%;
+}
+
+/* swal alert 창 css */
+.swal-modal {
+    background-color: black;
+    border: 1px solid rgba(255,255,255,0.3);
+  	margin-top : -6%;
+  	padding-bottom:20px;
+}
+.swal-text {
+    text-align: center;
+    color: white;
+ 	font-size:20px;
+ 	
+}
+.swal-title {
+    text-align: center;
+    color: white;
+    
+}
+
+.swal-footer{
+	display:flex;
+	justify-content : center;
+}
+.swal-button--confirm{
+	width:92.97px;
+}

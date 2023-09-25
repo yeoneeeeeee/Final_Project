@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org//dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="chatting">
+
+	<insert id="openChatRoom" parameterType="chatRoom" useGeneratedKeys="true">
+	
+		INSERT INTO CHAT_ROOM VALUES(
+			SEQ_CHAT_ROOM_NO.NEXTVAL, #{userNo}, #{title}, DEFAULT
+		)		
+		
+		<selectKey keyProperty="chatRoomNo" resultType="int" order="AFTER">
+			SELECT SEQ_CHAT_ROOM_NO.CURRVAL FROM DUAL
+		</selectKey>
+		
+	</insert>
+
+
+	<resultMap id="chatRoomResultSet" type="chatRoom">
+		<id column="CHAT_ROOM_NO" property="chatRoomNo" />
+		<result column="CHAT_TITLE" property="title" />
+		<result column="STATUS" property="status" />
+		<result column="CHAT_USER_NO" property="userNo" javaType="int" />
+		<result column="USER_NICK" property="userNick" />
+		<result column="CNT" property="cnt" />
+	</resultMap>
+	
+	<resultMap id="memberResultSet" type="member">
+		<id column="USER_NO" property="userNo"/>
+		<result column="USER_ID" property='userId'/>
+		<result column="USER_PWD" property="userPwd"/>
+		<result column="USER_NAME" property="userName"/>
+		<result column="USER_NICK" property="userNick"/>
+		<result column="USER_PHONE" property="userPhone"/>
+		<result column="USER_EMAIL" property="userEmail"/>
+		<result column="USER_MBTI" property="userMbti"/>
+		<result column="ENROLL_DATE" property="enrollDate"/>
+		<result column="USER_BIRTHDAY" property="userBirthday"/>
+		<result column="ENABLE" property="enable"/>
+		<result column='WB_STATUS' property="wbStatus"/>
+		<result column="STATUS" property="status"/>
+		<result column="CHECK_LOGIN" property="checkLog"/>
+	</resultMap>
+	
+	
+	<select id="selectChatRoomList" resultMap="chatRoomResultSet">
+		SELECT A.CHAT_ROOM_NO,
+			(
+				SELECT CHAT_TITLE
+				FROM CHAT_ROOM C
+				WHERE C.CHAT_ROOM_NO = A.CHAT_ROOM_NO AND STATUS = 'Y'
+			) CHAT_TITLE,
+			A.CHAT_USER_NO, USER_NICK,
+		    (
+		        SELECT COUNT(*)
+		        FROM CHAT_ROOM_JOIN B
+		        WHERE B.CHAT_ROOM_NO = A.CHAT_ROOM_NO 
+		    ) CNT
+		FROM CHAT_ROOM_JOIN A
+		JOIN MEMBER m ON (A.CHAT_USER_NO = USER_NO)
+		WHERE USER_NO = #{userNo}
+		ORDER BY (
+		    SELECT MAX(ENROLL_DATE)
+		    FROM CHAT_MESSAGE CM
+		    WHERE CM.CHAT_ROOM_NO = A.CHAT_ROOM_NO
+		) DESC
+	</select>
+	
+	
+	<insert id="insertChatRoom" >
+		INSERT INTO CHAT_ROOM_JOIN
+		VALUES(
+			#{chatRoomNo}, #{userNo}
+		)
+	</insert>
+	
+	<select id="searchFollowListByFollow" parameterType="hashmap" resultMap="memberResultSet">
+	   	SELECT DISTINCT M.USER_ID, M.USER_NICK, I.FILE_PATH, I.CHANGE_NAME, M.USER_NO
+	    FROM "MEMBER" M
+	    LEFT JOIN FRIEND F ON F.FRIEND_USER1 = M.USER_NO
+	    LEFT JOIN IMAGE I ON M.USER_NO = I.FILE_WRITER
+	    WHERE F.FRIEND_USER2 = #{userNo} AND I.FILE_LEVEL = 1 AND M.USER_NICK LIKE '%' || #{follow} || '%'
+   </select>
+	
+	
+	<select id="selectOne" resultMap="chatRoomResultSet">
+		SELECT *
+		FROM CHAT_ROOM
+		WHERE CHAT_TITLE = #{title}
+	</select>
+	
+	
+	<select id="selectChatRoomListByKeyword" parameterType="hashmap" resultMap="chatRoomResultSet">
+		SELECT A.CHAT_ROOM_NO, CHAT_TITLE, A.CHAT_USER_NO, USER_NICK ,
+			(
+				SELECT COUNT(*)
+				FROM CHAT_ROOM_JOIN B
+				WHERE B.CHAT_ROOM_NO = A.CHAT_ROOM_NO 
+			) CNT
+		FROM CHAT_ROOM_JOIN A
+		JOIN MEMBER m ON(A.CHAT_USER_NO = USER_NO)
+		JOIN CHAT_ROOM C ON(A.CHAT_ROOM_NO = C.CHAT_ROOM_NO)
+		WHERE C.STATUS = 'Y' AND USER_NO = #{userNo} AND CHAT_TITLE LIKE '%' || #{keyword} || '%'
+		ORDER BY A.CHAT_ROOM_NO DESC
+	</select>
+	
+	
+	<select id="joinChatRoom" resultMap="chatRoomResultSet">
+		SELECT *
+		FROM CHAT_ROOM cr 
+		JOIN CHAT_ROOM_JOIN crj USING(CHAT_ROOM_NO)
+		JOIN MEMBER m ON(crj.CHAT_USER_NO = m.USER_NO)
+		WHERE CHAT_ROOM_NO = #{chatRoomNo} AND cr.STATUS = 'Y'
+	</select>
+	
+	
+	<resultMap id="chatMessageResultSet" type="chatMessage">
+		<id column="CHAT_NO" property="chatNo"/>
+		<result column="CHAT_ROOM_NO" property="chatRoomNo"/>
+		<result column="CHAT_USER_NO" property="userNo"/>
+		<result column="CHAT_MESSAGE" property="message"/>
+		<result column="ENROLL_DATE" property="enrollDate"/>
+		<result column="USER_NICK" property="userNick"/>	
+		<result column="FILE_PATH" property="filePath"/>
+		<result column="CHANGE_NAME" property="changeName"/>
+		<result column="ORIGIN_NAME" property="originName"/>	
+		<result column="FEED_NO" property="feedNo"/>			
+	</resultMap>
+	
+	
+	<select id="selectMsgList" resultMap="chatMessageResultSet">
+		SELECT CHAT_NO, CHAT_ROOM_NO, CHAT_USER_NO, CHAT_MESSAGE , cm.ENROLL_DATE, USER_NICK ,FILE_PATH, CHANGE_NAME, FEED_NO
+		FROM CHAT_MESSAGE CM
+		JOIN MEMBER M ON(USER_NO = CHAT_USER_NO)
+		JOIN IMAGE ON (USER_NO = FILE_WRITER)
+		WHERE CHAT_ROOM_NO = #{chatRoomNo} AND FILE_LEVEL = 1
+		ORDER BY cm.ENROLL_DATE
+	</select>
+	
+	
+	<insert id="insertMessage" parameterType="chatMessage">
+		INSERT INTO CHAT_MESSAGE
+		VALUES(
+			SEQ_CHAT_NO.NEXTVAL,
+			#{chatRoomNo},
+			#{userNo},
+			#{message},
+			DEFAULT,
+			<if test="#{feedNo != 0}">
+			#{feedNo}
+			</if>
+		)
+	</insert>
+	
+	
+	<select id="selectImage" resultMap="chatMessageResultSet">
+		SELECT DISTINCT FILE_PATH, CHANGE_NAME
+		FROM CHAT_ROOM_JOIN cm 
+		JOIN IMAGE ON (FILE_WRITER = CHAT_USER_NO)
+		WHERE CHAT_USER_NO = #{userNo} AND FILE_LEVEL = 1 AND CHAT_ROOM_NO = #{chatRoomNo}
+	</select>
+	
+	
+	<select id="selectNewImg" resultMap="chatMessageResultSet">
+		SELECT *
+		FROM (
+		    SELECT CHAT_NO, CHAT_ROOM_NO, CHAT_USER_NO, CHAT_MESSAGE, cm.ENROLL_DATE, USER_NICK, FILE_PATH, CHANGE_NAME
+		    FROM CHAT_MESSAGE cm
+		    JOIN MEMBER M ON(USER_NO = CHAT_USER_NO)
+		    JOIN IMAGE ON (USER_NO = FILE_WRITER)
+		    ORDER BY cm.ENROLL_DATE DESC
+		)
+		WHERE ROWNUM = 1
+	</select>
+	
+	
+	<select id="selectNewMsg" resultMap="chatMessageResultSet">
+		SELECT *
+		FROM (
+			SELECT *
+			FROM CHAT_MESSAGE cm 
+			WHERE CHAT_ROOM_NO = #{chatRoomNo}
+			ORDER BY ENROLL_DATE DESC
+		)
+		WHERE ROWNUM = 1
+	</select>
+	
+	
+	<resultMap id="chatRoomJoinResultSet" type="chatRoomJoin">
+		<id column="CHAT_ROOM_NO" property="chatRoomNo" />
+		<result column="CHAT_USER_NO" property="userNo" />
+		<result column="FILE_PATH" property="filePath"/>
+      	<result column="CHANGE_NAME" property="changeName"/>
+	</resultMap>
+	
+	
+	<select id="selectChatRoomListImage" resultMap="chatRoomJoinResultSet">
+		SELECT CHAT_ROOM_NO, FILE_PATH, CHANGE_NAME, CHAT_USER_NO
+		FROM CHAT_ROOM_JOIN crj 
+		JOIN IMAGE i ON(FILE_WRITER = CHAT_USER_NO)
+		WHERE CHAT_ROOM_NO IN (
+				SELECT CHAT_ROOM_NO
+				FROM CHAT_ROOM_JOIN 
+				WHERE CHAT_USER_NO = #{userNo}
+			) 
+			AND FILE_LEVEL = 1
+	</select>
+	
+	
+	<select id="selectChatRoomImage" resultMap="chatRoomJoinResultSet">
+		SELECT CHAT_ROOM_NO, FILE_PATH, CHANGE_NAME, CHAT_USER_NO
+		FROM CHAT_ROOM_JOIN crj 
+		JOIN IMAGE i ON(FILE_WRITER = CHAT_USER_NO)
+		WHERE CHAT_ROOM_NO = #{chatRoomNo} AND FILE_LEVEL = 1
+	</select>
+	
+	
+	<delete id="exitChatRoom">
+		DELETE FROM CHAT_ROOM_JOIN
+        WHERE CHAT_ROOM_NO = #{chatRoomNo} AND CHAT_USER_NO = #{userNo}
+	</delete>
+	
+	
+	<insert id="sendImgFile">
+		INSERT INTO CHAT_MESSAGE
+		(CHAT_NO, CHAT_ROOM_NO, CHAT_USER_NO, CHAT_MESSAGE, ENROLL_DATE)
+		VALUES
+		(SEQ_CHAT_NO.NEXTVAL, #{chatRoomNo}, #{userNo}, #{message}, DEFAULT)
+	</insert>
+	
+	
+	<insert id="insertImgFile">
+		INSERT INTO IMAGE
+		VALUES (
+			SEQ_FILE_NO.NEXTVAL, #{fileWriter}, #{originName}, #{changeName}, #{filePath}, DEFAULT, #{fileLevel}, DEFAULT
+		)
+	</insert>
+	
+	
+	<select id="selectThumbnail" resultMap="chatMessageResultSet">
+		SELECT FILE_PATH, CHANGE_NAME
+		FROM IMAGE i 
+		JOIN FEED ON(FILE_FNO = FEED_NO)
+		WHERE FEED_NO = #{feedNo} AND FILE_LEVEL = 2
+	</select>
+	
+	
+	<resultMap id="feedResultSet" type="feed">
+		<id column="FEED_NO" property="feedNo"/>
+		<result column="FEED_WRITER" property="feedWriter"/>
+		<result column="LIKE_STATUS" property="likeStatus"/>
+		<result column="CHOICE_STATUS" property="choiceStatus"/>
+		<result column="LIKE_COUNT" property="likeCount"/>
+		<result column="FEED_HASHTAG" property="feedHashtag"/>
+		<result column="FEED_CONTENT" property="feedContent"/>
+	</resultMap>
+	
+	
+	<select id="selectFeedOne" resultMap="feedResultSet">
+		SELECT *
+		FROM FEED
+		WHERE FEED_NO = #{feedNo}
+	</select>
+	
+	
+	<resultMap id="replyResultSet" type="reply">
+      <id column="REPLY_NO" property="replyNo"/>
+      <result column="REPLY_WRITER" property='replyWriter'/>
+      <result column="REPLY_CONTENT" property="replyContent"/>
+      <result column="REPLY_FNO" property="replyFno"/>
+      <result column="ENROLL_DATE" property="enrollDate"/>
+      <result column="STATUS" property="status"/>
+   </resultMap>  
+	
+	
+	<select id="selectReply" resultMap="replyResultSet">
+		SELECT *
+		FROM REPLY r
+		JOIN MEMBER m ON(REPLY_WRITER = USER_NO)
+		LEFT JOIN IMAGE i ON(USER_NO = FILE_WRITER)
+		WHERE REPLY_FNO = #{feedNo} AND FILE_LEVEL = 1
+		ORDER BY REPLY_NO DESC
+	</select>
+	
+	
+	<resultMap id="imagesResultSet" type="images">
+      <id column="FILE_NO" property="fileNo"/>
+      <result column="FILE_WRITER" property='fileWriter'/>
+      <result column="ORIGIN_NAME" property="originName"/>
+      <result column="CHANGE_NAME" property="changeName"/>
+      <result column="FILE_PATH" property="filePath"/>
+      <result column="STATUS" property="status"/>
+      <result column="FILE_LEVEL" property="fileLevel"/>
+      <result column="FILE_FNO" property="fileFno"/>
+   </resultMap>  
+	
+	
+	<select id="selectFeedImg" resultMap="imagesResultSet">
+		SELECT *
+		FROM IMAGE
+		WHERE FILE_FNO = #{feedNo} AND FILE_LEVEL IN (2,3,4,5,6)
+	</select>
+	
+	
+	<select id="selectJoinUsers" resultMap="chatRoomJoinResultSet">
+		SELECT *
+		FROM CHAT_ROOM_JOIN
+		WHERE CHAT_ROOM_NO = #{chatRoomNo} AND CHAT_USER_NO != #{userNo}
+	</select>
+	
+	
+	
+</mapper>

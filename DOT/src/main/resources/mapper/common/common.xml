@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="common">
+	
+	<resultMap id="imageResultSet" type="images">
+		<id column="FILE_NO" property="fileNo"/>
+		<result column="FILE_WRITER" property="fileWriter"/>
+		<result column="ORIGIN_NAME" property="originName"/>
+		<result column="CHANGE_NAME" property="changeName"/>
+		<result column="FILE_PATH" property="filePath"/>
+		<result column="STATUS" property="status"/>
+		<result column="FILE_LEVEL" property="fileLevel"/>
+		<result column="FILE_FNO" property="fileFno"/>
+	</resultMap>
+	
+	<resultMap id="searchResultSet" type="search">
+		<id column="SEARCH_NO" property="searchNo"/>
+		<result column="SEARCH_WRITER" property="searchWriter"/>
+		<result column="SEARCH_KEYWORD" property="searchKeyword"/>
+		<result column="ENROLL_DATE" property="enrollDate"/>
+	</resultMap>
+	
+	<resultMap id="memberResultSet" type="member">
+		<id column="USER_NO" property="userNo"/>
+		<result column="USER_ID" property='userId'/>
+		<result column="USER_PWD" property="userPwd"/>
+		<result column="USER_NAME" property="userName"/>
+		<result column="USER_NICK" property="userNick"/>
+		<result column="USER_PHONE" property="userPhone"/>
+		<result column="USER_EMAIL" property="userEmail"/>
+		<result column="USER_MBTI" property="userMbti"/>
+		<result column="ENROLL_DATE" property="enrollDate"/>
+		<result column="USER_BIRTHDAY" property="userBirthday"/>
+		<result column="ENABLE" property="enable"/>
+		<result column='WB_STATUS' property="wbStatus"/>
+		<result column="STATUS" property="status"/>
+		<result column="CHECK_LOGIN" property="checkLog"/>
+	</resultMap>
+	
+	<resultMap id="alarmResultSet" type="alarm">
+		<id column="BOARD_NO" property="alarmNo"/>
+		<result column="BOARD_WRITER" property="alarmWriter"/>
+		<result column="BOARD_ACCEPTUSER" property="alarmAcceptUser"/>
+		<result column="BOARD_CONTENT" property="alarmContent"/>
+		<result column="BOARD_TYPE" property="alarmType"/>
+	</resultMap>
+	
+	<resultMap id="feedResultSet" type="feed">
+		<id column="FEED_NO" property="feedNo"/>
+		<result column="FEED_WRITER" property='feedWriter'/>
+		<result column="FEED_CONTENT" property="feedContent"/>
+		<result column="LIKE_STATUS" property="likeStatus"/>
+		<result column="CHOICE_STATUS" property="choiceStatus"/>
+		<result column="LIKE_COUNT" property="likeCount"/>
+		<result column="FEED_HASHTAG" property="feedHashtag"/>
+	</resultMap> 
+	
+	<resultMap id="reportResultSet" type="report">
+		<id column="REPORT_NO" property="reportNo"/>
+		<result column="REPORT_WRITER" property="reportWriter"/>
+		<result column="REPORT_TITLE" property="reportTitle"/>
+		<result column="REPORT_CONTENT" property="reportContent"/>
+		<result column="ENROLL_DATE" property="enrollDate"/>
+		<result column="REPORT_LEVEL" property="reportLevel"/>
+		<result column="REPORT_STATUS" property="reportStatus"/>
+	</resultMap>
+	
+	<select id="selectList"  resultMap="imageResultSet">
+		SELECT *
+		FROM IMAGE I
+		JOIN FEED F ON F.FEED_NO = I.FILE_FNO
+		WHERE I.FILE_LEVEL = '2'
+	</select> 
+	
+	<select id="selectList2" parameterType="hashmap" resultMap="imageResultSet">
+		SELECT *
+		FROM IMAGE I
+		JOIN FEED F ON F.FEED_NO = I.FILE_FNO
+			 JOIN MEMBER M ON M.USER_NO = F.FEED_WRITER 
+		WHERE I.FILE_LEVEL = '2' 
+		<if test="keyword != null and keyword != ''">
+			AND
+			<choose>
+				<when test="condition == 'feedHashtag'">
+					FEED_HASHTAG LIKE '%${keyword}%'
+				</when>
+				<when test="condition == 'userNick'">
+					USER_NICK LIKE '%${keyword}%'
+				</when>
+			</choose>
+		</if>
+	</select> 
+	
+	<select id="MyHistory" parameterType="int" resultMap="searchResultSet">
+		SELECT *
+		FROM SEARCH
+		WHERE SEARCH_WRITER = #{i}
+		ORDER BY SEARCH_NO DESC
+	</select>
+	
+	<insert id="insertSearch" parameterType="search">
+		INSERT INTO SEARCH
+		VALUES (
+				SEQ_SEARCH_NO.NEXTVAL,
+				#{searchWriter},
+				#{searchKeyword},
+				SYSDATE				
+				)
+	</insert>
+	
+	<select id="selectMyAlarm" parameterType="int" resultMap="alarmResultSet">
+		SELECT *
+		FROM BOARD
+		LEFT JOIN IMAGE ON FILE_WRITER = BOARD_WRITER AND FILE_LEVEL = 1
+		LEFT JOIN MEMBER ON USER_NO = BOARD_WRITER
+		WHERE BOARD_ACCEPTUSER = #{userNo}
+	</select>
+	
+	<insert id="insertFollowAlarm1" parameterType="member">
+		INSERT INTO BOARD
+		VALUES(
+			SEQ_BOARD_NO.NEXTVAL,
+			0,
+			#{userNo},
+			'님이 '|| #{userNick}||'님을 팔로우했습니다.',
+			'F'
+		)
+	</insert>
+	
+	<update id="updateFollowAlarm1" parameterType="member">
+		UPDATE BOARD
+		SET
+			BOARD_WRITER = #{userNo},
+			BOARD_CONTENT = #{userNick} || BOARD_CONTENT
+		WHERE BOARD_WRITER = 0
+	</update>
+	
+	<select id="selectAlarmOne" parameterType="int" resultMap="alarmResultSet">
+		SELECT *
+		FROM BOARD
+		WHERE BOARD_NO = #{ano}
+	</select>
+	
+	<delete id="updateRead" parameterType="int">
+		DELETE BOARD
+		WHERE BOARD_NO = #{ano}
+	</delete>
+	
+	<insert id="insertLikeAlarm1" parameterType="member">
+		INSERT INTO BOARD
+		VALUES(
+			SEQ_BOARD_NO.NEXTVAL,
+			0,
+			#{userNo},
+			'님이 '||#{userNick}||'의 게시물에 좋아요를 눌렀습니다.',
+			'L'
+		)
+	</insert>
+	
+	<update id="updateLikeAlarm1" parameterType="member">
+		UPDATE BOARD
+		SET
+			BOARD_WRITER = #{userNo},
+			BOARD_CONTENT = #{userNick} || BOARD_CONTENT
+		WHERE BOARD_WRITER = 0
+	</update>
+	
+	<insert id="insertReport" parameterType="report">
+		INSERT INTO REPORT
+		VALUES(
+			SEQ_REPORT_NO.NEXTVAL,
+			#{reportWriter},
+			#{reportTitle},
+			#{reportContent},
+			SYSDATE,
+			'Y',
+			#{reportTarget},
+			#{reportFno}
+		)
+	</insert>
+	
+	<!-- 관리자페이지 회원 관리 -->
+   <select id="memList1" resultMap="memberResultSet">   
+      SELECT *
+      FROM MEMBER
+      
+   </select>
+   
+   
+   <select id="memList" resultMap="memberResultSet">   
+      SELECT *
+      FROM MEMBER
+      <if test="keyword != null and keyword != ''">
+         WHERE
+         <choose>
+            <when test="condition == 'userId'">
+               USER_ID LIKE '%${keyword}%'
+            </when>
+            <when test="condition == 'userName'">
+               USER_NAME LIKE '%${keyword}%'
+            </when>
+            <when test="condition == 'userNick'">
+               USER_NICK LIKE '%${keyword}%'
+            </when>
+         </choose>
+      </if>
+   </select>
+   
+   <select id="selectMListCount" parameterType="hashmap" resultType="int">
+      SELECT
+         COUNT(*)
+      FROM MEMBER
+      <if test="keyword != null and keyword != ''">
+         WHERE
+         <choose>
+            <when test="condition == 'userId'">
+               USER_ID LIKE '%${keyword}%'
+            </when>
+            <when test="condition == 'userName'">
+               USER_NAME LIKE '%${keyword}%'
+            </when>
+            <when test="condition == 'userNick'">
+               USER_NICK LIKE '%${keyword}%'
+            </when>
+         </choose>
+      </if>
+   </select>
+   
+   <update id="deleteMemberAdmin" parameterType="hashmap">
+   		UPDATE MEMBER
+   		SET
+   			<if test='status =="Y"'>
+   				STATUS = 'N'
+   			</if>
+   			<if test='status =="N"'>
+   				STATUS = 'Y'
+   			</if>
+   		WHERE USER_NO = #{uno}
+   </update>
+   
+    <select id="feList1" resultMap="feedResultSet">   
+      SELECT *
+      FROM FEED
+      LEFT JOIN MEMBER ON FEED_WRITER = USER_NO
+   </select>
+   
+   
+   <select id="feList" resultMap="feedResultSet">   
+      SELECT *
+      FROM FEED
+      LEFT JOIN MEMBER ON FEED_WRITER = USER_NO
+      <if test="keyword != null and keyword != ''">
+         WHERE
+         <choose>
+            <when test="condition == 'writer'">
+               USER_NICK LIKE '%${keyword}%'
+            </when>
+            <when test="condition == 'hashtag'">
+               FEED_HASHTAG LIKE '%${keyword}%'
+            </when>
+         </choose>
+      </if>
+   </select>
+   
+   <select id="selectFListCount" parameterType="hashmap" resultType="int">
+      SELECT
+         COUNT(*)
+      FROM FEED
+      LEFT JOIN MEMBER ON FEED_WRITER = USER_NO
+      <if test="keyword != null and keyword != ''">
+         WHERE
+          <choose>
+            <when test="condition == 'writer'">
+               USER_NICK LIKE '%${keyword}%'
+            </when>
+            <when test="condition == 'hashtag'">
+               FEED_HASHTAG LIKE '%${keyword}%'
+            </when>
+         </choose>
+      </if>
+   </select>
+   
+   <delete id="deleteFeed" parameterType="int">
+   		DELETE FEED
+   		WHERE FEED_NO = #{i}
+   </delete>
+	
+	<select id="WList" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER
+		WHERE WB_STATUS = 'W'
+		<if test="keyword != null and keyword != ''">
+			AND
+			<choose>
+				<when test="condition == 'userId'">
+					USER_ID LIKE '%${keyword}%'
+				</when>
+				<when test="condition == 'userName'">
+					USER_NAME LIKE '%${keyword}%'
+				</when>
+				<when test="condition == 'userNick'">
+					USER_NICK LIKE '%${keyword}%'
+				</when>
+			</choose>
+		</if>
+	</select>
+	
+	<select id="selectWListCount" parameterType="hashmap" resultType="int">
+		SELECT 
+			COUNT(*)
+		FROM MEMBER
+		WHERE WB_STATUS = 'W'
+		<if test="keyword != null and keyword != ''">
+			AND
+			<choose>
+				<when test="condition == 'userId'">
+					USER_ID LIKE '%${keyword}%'
+				</when>
+				<when test="condition == 'userName'">
+					USER_NAME LIKE '%${keyword}%'
+				</when>
+				<when test="condition == 'userNick'">
+					USER_NICK LIKE '%${keyword}%'
+				</when>
+			</choose>
+		</if>
+	</select>
+	
+	<select id="BList" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER
+		WHERE STATUS = 'N'
+		<if test="keyword != null and keyword != ''">
+			AND
+			<choose>
+				<when test="condition == 'userId'">
+					USER_ID LIKE '%${keyword}%'
+				</when>
+				<when test="condition == 'userName'">
+					USER_NAME LIKE '%${keyword}%'
+				</when>
+				<when test="condition == 'userNick'">
+					USER_NICK LIKE '%${keyword}%'
+				</when>
+			</choose>
+		</if>
+	</select>
+	
+	<select id="selectBListCount" parameterType="hashmap" resultType="int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE STATUS = 'N'
+		<if test="keyword != null and keyword != ''">
+			AND
+			<choose>
+				<when test="condition == 'userId'">
+					USER_ID LIKE '%${keyword}%'
+				</when>
+				<when test="condition == 'userName'">
+					USER_NAME LIKE '%${keyword}%'
+				</when>
+				<when test="condition == 'userNick'">
+					USER_NICK LIKE '%${keyword}%'
+				</when>
+			</choose>
+		</if>
+	</select>
+	
+	<select id="selectReportList" resultMap="reportResultSet">
+		SELECT *
+		FROM REPORT R
+ 		JOIN MEMBER M ON M.USER_NO = R.REPORT_WRITER
+ 		WHERE M.STATUS = 'Y' 
+ 		<if test="keyword != null and keyword != ''">
+			AND
+			<choose>
+				<when test="condition == 'writer'">
+					M.USER_WRITER LIKE '%${keyword}%'
+				</when>
+				<when test="condition == 'title'">
+					REPORT_TITLE LIKE '%${keyword}%'
+				</when>
+			</choose>
+		</if>
+		ORDER BY R.REPORT_NO DESC
+	</select>
+	
+	<select id="selectRListCount" parameterType="hashmap" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM REPORT R
+		JOIN MEMBER M ON R.REPORT_WRITER = M.USER_NO
+		WHERE M.STATUS = 'Y' 
+		<if test="keyword != null and keyword != ''">
+			AND
+			<choose>
+				<when test="condition == 'writer'">
+					M.USER_WRITER LIKE '%${keyword}%'
+				</when>
+				<when test="condition == 'title'">
+					REPORT_TITLE LIKE '%${keyword}%'
+				</when>
+			</choose>
+		</if>
+	</select>
+	
+	<select id="detailList" parameterType="int" resultMap="reportResultSet">
+		SELECT *
+		FROM REPORT R
+		JOIN MEMBER M ON R.REPORT_WRITER = M.USER_NO
+		WHERE R.REPORT_NO = #{reportNo}
+	</select>
+	
+	<update id="updateReadReport" parameterType="int">
+		UPDATE REPORT
+		SET REPORT_STATUS = 'N'
+		WHERE REPORT_NO = #{reportNo}
+	</update>
+	
+	<delete id="deleteReport" parameterType="int">
+   		DELETE REPORT
+   		WHERE REPORT_NO = #{i}
+   </delete>
+   
+   <insert id="insertChatAlarm">
+		INSERT INTO BOARD
+		VALUES(
+			SEQ_BOARD_NO.NEXTVAL,
+			#{alarmWriter},
+			#{alarmAcceptUser},
+			#{alarmContent},
+			'C'
+		)
+	</insert>
+	
+	<update id="BlackMember" parameterType="int">
+		UPDATE MEMBER
+		SET
+			STATUS = 'N'
+		WHERE USER_NO = #{i}
+	</update>
+	
+	<update id="WhiteMember" parameterType="int">
+		UPDATE MEMBER
+		SET
+			WB_STATUS = 'W'
+		WHERE USER_NO = #{i}
+	</update>
+	
+	<select id="countReport" parameterType="int" resultType="int">
+		SELECT COUNT(*)
+		FROM REPORT
+		WHERE REPORT_TARGET = #{userNo}
+	</select>
+	
+	<select id="countFollower" parameterType="int" resultType="int">
+		SELECT COUNT(*)
+		FROM FRIEND
+		WHERE FRIEND_USER1 = #{userNo}
+	</select>
+	
+	<update id="BListDeleteadmin" parameterType="int">
+		UPDATE MEMBER
+		SET
+			STATUS = 'Y'
+		WHERE USER_NO = #{i}
+	</update>
+	
+	<update id="WListDeleteadmin" parameterType="int">
+		UPDATE MEMBER
+		SET
+			WB_STATUS = 'N'
+		WHERE USER_NO = #{i}
+	</update>
+</mapper>

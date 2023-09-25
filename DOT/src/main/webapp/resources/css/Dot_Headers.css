@@ -1,0 +1,346 @@
+@font-face {
+   font-family: 'Pretendard Variable';
+   font-weight: 45 920;
+   font-style: normal;
+   font-display: swap;
+   src: local('Pretendard Variable'), url('./images/PretendardVariable.woff2') format('woff2-variations');
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('./images/Pretendard-Thin.woff') format('woff');
+    font-weight: 100;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Pretendard';
+    src: url('./images/Pretendard-ExtraLight.woff') format('woff');
+    font-weight: 200;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Pretendard';
+    src: url('./images/Pretendard-Light.woff') format('woff');
+    font-weight: 300;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Pretendard';
+    src: url('./images/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Pretendard';
+    src: url('./images/Pretendard-Medium.woff') format('woff');
+    font-weight: 500;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Pretendard';
+    src: url('./images/Pretendard-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Pretendard';
+    src: url('./images/Pretendard-Bold.woff') format('woff');
+    font-weight: 700;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Pretendard';
+    src: url('./images/Pretendard-ExtraBold.woff') format('woff');
+    font-weight: 800;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Pretendard';
+    src: url('./images/Pretendard-Black.woff') format('woff');
+    font-weight: 900;
+    font-display: swap;
+}  font-display: swap;
+}
+* {
+    text-decoration: none;
+    box-sizing: border-box;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    font-family: 'Pretendard';
+    font-weight: 500;
+    border: 0px solid grey;
+    box-sizing: border-box;
+    color: white;
+}
+body {
+    margin : 0;
+    box-sizing: border-box;
+    height: 100%;
+    background-color: black !important;
+}
+
+/* ============================================================= */
+/* 헤더바 */
+/* ============================================================= */
+
+.header {
+    /* width: 95%; */
+    height: 80px;
+    margin: 0 10px 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    background-color: black;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.146);
+}
+
+.logo {
+    z-index: 10;
+    margin-left: 60px;
+}
+
+.logo img {
+    margin-left: 90px;
+    width: 150px;
+    cursor: pointer;
+}
+
+.logo img:hover {
+    display: inline-block;
+    animation: tada; 
+    animation-duration: .5s; 
+}
+
+
+.header .header-tools {
+    display: flex;
+    margin-right: 50px;
+    font-weight: 480;
+    cursor: pointer;
+}
+
+.header-tools span,
+.header-tools .dm-tool a {
+    font-size: 35px;
+    font-weight: 200;
+    line-height: 50px;
+    margin-left: 20px;
+}
+.header-tools span {
+}
+
+.header .search-tool {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.search-input {
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+    border-radius: 15px;
+    transition: all .5s;
+    font-size: 14px;
+}
+
+.search-input:focus {
+    outline: 0;
+}
+
+#search {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    z-index: 10;
+    right: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+#search:checked + label input {
+    margin-right: 20px;
+    display: block;
+    width: 250px;
+    height: 40px;
+    transition: all .5s;
+    color: white;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.335);
+    padding: 0 20px;
+    opacity: 1;
+}
+
+.alert-tool {
+    position: relative;
+}
+
+.alert-tool label {
+    position: relative;
+}
+
+.alert-tool p {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    color: white;
+    border: 0px solid white;
+    border-radius: 10px;
+    top: 35px;
+    right: 0;
+}
+
+.alarm-status{
+	font-size : 10px !important;
+	color: rgb(135, 135, 135) !important;
+}
+
+
+.dm-tool {
+    position: relative;
+}
+
+.dm-tool p {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    color: white;
+    border: 0px solid white;
+    border-radius: 10px;
+    background-color: red;
+    top: 35px;
+    right: 0;
+}
+
+.alert-tool>span:hover,
+.dm-tool>span:hover,
+#search:hover ~ span {
+    font-weight: 200;
+    animation: swing; 
+    animation-duration: .5s; 
+}
+
+.header .profile {
+    width: 250px;
+    margin-left: 40px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.header .profile p:hover {
+    cursor: pointer;
+}
+
+.profile-img>img {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+}
+
+.profile-name {
+    height: 100%;
+    margin-left: 20px;
+}
+
+.profile-name p {
+    position: relative;
+    height: 100%;   
+    display: flex;
+    align-items: center;
+    top:10px;
+}
+
+/* alert-tool Modal */
+
+.alert-tool .modal-backgound {
+    z-index : 1;
+}
+
+.alert-tool .modal-content {
+    background-color: rgb(0, 0, 0) !important;
+    overflow-y: auto;
+    height: 300px;
+    border: 1px solid rgba(255, 255, 255, 0.146);
+    margin-left: 78%;
+    margin-top: -2%;
+    border-radius: 20px !important;
+    width: 26% !important;
+}
+
+.alert-tool .modal-box {
+    padding-bottom: 10px;
+}
+
+.alarm-all-btn{
+    height:15px;
+}
+
+.alarm-all-btn a{
+    margin: 5px 10px 10px 200px !important;
+    padding-bottom: 16px;
+    color: gray !important;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.alarm-all-btn a:hover{
+    color: white !important;
+    transition: all .35s;
+}
+
+.modal-profile-icon{
+    display: flex;
+    margin-top: 15px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.modal-profile-icon:hover {
+    background-color: rgba(115,115,115, 0.2);
+    width: 100%;
+    border-radius: 15px;
+    transition: all .35s;
+}
+
+.modal-profile-icon img{
+    width: 40px; 
+    height: 40px;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.modal-alarm-contents {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    padding-left: 14px;
+    margin-top: -15px;
+}
+
+.modal-alarm-user{
+    color: whitesmoke !important;
+    font-size: 13px;
+    font-weight: bold;
+    height:34px;
+}
+
+.modal-alarm-content{
+    display: inline-block;
+    overflow: hidden;
+    color: rgb(135, 135, 135) !important;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-break: break-all;
+    width: 200px;
+    text-align: left;
+    font-size: 12px;
+}
+
+.more-alarm23{
+	font-size:14px;
+	text-align:right;
+	padding-right: 15px;
+}

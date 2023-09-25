@@ -1,0 +1,377 @@
+body {
+    margin : 0;
+    box-sizing: border-box;
+    background-color: black !important;
+    color: white !important;
+    height: 2000px;
+}
+
+.wrap {
+    height: 100%;
+}
+
+
+/* ============================================================= */
+/* 헤더바 */
+/* ============================================================= */
+
+.header {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    background-color: black;
+    position: absolute;
+}
+.logo {
+    margin-left: 60px;
+}
+
+.logo img {
+    margin-left: 90px;
+    width: 150px;
+    cursor: pointer;
+}
+
+
+.header .header-form {
+    width: 180px;
+    margin-right: 100px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.header .header-form a {
+    text-decoration: none;
+    color: lightgray;
+    transition: all .35s;
+    font-weight: 700;
+}
+
+.header .header-form a:hover {
+    color: white;
+    transition: all .35s;
+}
+
+
+
+
+/* ============================================================= */
+/* 컨텐츠 */
+/* ============================================================= */
+
+.start-wrap {
+    position: fixed;
+    z-index: 12;
+    height: 100vh;
+    width: 100%;
+    background-color: black;
+}
+
+.end-wrap {
+    animation: end 1.5s;
+}
+
+@keyframes end {
+    0% {
+        background-color: black;
+        opacity: 1;
+    }
+    100% {
+        background-color: black;
+        opacity: 0;
+        z-index: -1;
+    }
+}
+
+.section-container {
+    width: 100%;
+    height: 100vh;
+}
+
+.section1-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.sec1-header {
+    border-color: transparent;
+    width: 0px;
+    height: 400px;
+    font-weight: 800;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    line-height: 80px;
+    padding: 50px 0;
+    position: fixed;
+    z-index: 12;
+}
+
+.sec1-header-effect {
+    border: 10px solid rgb(255, 255, 255);
+    border-left-color: transparent;
+    border-right-color: transparent;
+    width: 80%;
+    transition: all 1.1s;
+}
+
+.sec1-t1,
+.sec1-t2,
+.sec1-t3 {
+    width: 1000px;
+    opacity: 0;
+    text-align: center;
+    font-size: 47px;
+}
+
+.sec1-text {
+    opacity: 1;
+    text-align: center;
+    transition: all .35s;
+}
+
+.section2-wrap {
+    width: 100%;
+    background-color: black;
+    position: relative;
+    padding-top: 100px;
+    z-index: 10;
+}
+
+
+
+.sec2-header {
+    width: 100%;
+    height: 150px;
+    border-top: 10px solid white;
+    border-bottom: 10px solid white;
+    margin-top: 300px;
+    overflow: hidden;
+    font-size: 60px;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space:nowrap;
+    position: relative;
+}
+
+.sec2-t {
+    position: absolute;
+    animation: slide-right 35s linear  infinite;
+}
+
+@keyframes slide-right {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.sec2-body {
+    width: 100%;
+    display: flex;
+    position: relative;
+}
+
+
+.sec2-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+}
+
+
+.left-description {
+    width: 40%;
+    height: 100vh;
+    padding: 100px;
+    font-size: 60px;
+    top:0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fixed {
+    position: fixed;
+}
+
+.sticky {
+    position: sticky;
+    bottom: 0;
+}
+
+.right-description {
+    width: 60%;
+    padding: 350px 100px 100px;
+    font-size: 60px;
+    left: 50%;
+}
+
+.left-t1,
+.left-t2,
+.left-t3 {
+    font-weight: 700;
+    position: absolute;
+    width: 70%;
+    height: 50%;
+    border: 1px solid white;
+    padding: 100px 20px
+}
+
+.show-text {
+    opacity: 1;
+    transition: all .25s;
+}
+
+.hide-text {
+    opacity: 0;
+    transition: all .25s;
+}
+
+.right-img1,
+.right-img2,
+.right-img3 {
+    width: 100%;
+    height: 100vh;
+    padding: 100px 50px;
+}
+
+.img-box {
+    border: 1px solid white;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.section3-wrap {
+    width: 100%;
+    height: 3000px;
+}
+
+.divide_content{
+    width : 100%;
+    height : 930px;
+}
+/* Reset. */
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+}
+
+/* Panels. */
+.splitview {
+    position: relative;
+    width: 100%;
+    min-height: 45vw;
+    overflow: hidden;
+}
+
+.panel {
+    position: absolute;
+    width: 100vw;
+    min-height: 45vw;
+    overflow: hidden;
+}
+
+.panel .content {
+    position: absolute;
+    width: 100vw;
+    min-height: 45vw;
+    color: #FFF;
+}
+
+.panel .description {
+    width: 25%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+}
+
+.panel img {
+    box-shadow: 0 0 20px 20px rgba(0, 0, 0, 0.15);
+    width: 35%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.bottom1 {
+    background-color: rgb(49, 49, 49);
+    z-index: 1;
+}
+
+.bottom1 .description {
+    right: 5%;
+}
+
+.top1 {
+    background-color: rgb(140, 140, 140);
+    z-index: 2;
+    width: 50vw;
+
+    /*-webkit-clip-path: polygon(60% 0, 100% 0, 100% 100%, 40% 100%);
+    clip-path: polygon(60% 0, 100% 0, 100% 100%, 40% 100%);*/
+}
+
+.top1 .description {
+    left: 5%;
+}
+
+/* Handle. */
+.handle1 {
+    height: 100%;
+    position: absolute;
+    display: block;
+    background-color: rgb(177, 162, 129);
+    width: 5px;
+    top: 0;
+    left: 50%;
+    z-index: 3;
+}
+
+/* Skewed. */
+.skewed .handle1 {
+    top: 50%;
+    transform: rotate(30deg) translateY(-50%);
+    height: 200%;
+    -webkit-transform-origin: top;
+    -moz-transform-origin: top;
+    transform-origin: top;
+}
+
+.skewed .top1 {
+    transform: skew(-30deg);
+    margin-left: -1000px;
+    width: calc(50vw + 1000px);
+}
+
+.skewed .top1 .content {
+    transform: skew(30deg);
+    margin-left: 1000px;
+}
+
+/* Responsive. */
+@media (max-width: 900px) {
+    body {
+        font-size: 75%;
+    }
+}

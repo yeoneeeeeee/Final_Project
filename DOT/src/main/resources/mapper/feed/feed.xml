@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="feed">
+	
+	<resultMap id="memberResultSet" type="member">
+      <id column="USER_NO" property="userNo"/>
+      <result column="USER_ID" property='userId'/>
+      <result column="USER_PWD" property="userPwd"/>
+      <result column="USER_NAME" property="userName"/>
+      <result column="USER_NICK" property="userNick"/>
+      <result column="USER_PHONE" property="userPhone"/>
+      <result column="USER_EMAIL" property="userEmail"/>
+      <result column="USER_MBTI" property="userMbti"/>
+      <result column="ENROLL_DATE" property="enrollDate"/>
+      <result column="USER_BIRTHDAY" property="userBirthday"/>
+      <result column="ENABLE" property="enable"/>
+      <result column='WB_STATUS' property="wbStatus"/>
+      <result column="STATUS" property="status"/>
+      <result column="FILE_PATH" property="filePath"/>
+      <result column="CHANGE_NAME" property="changeName"/>
+      <result column="ORIGIN_NAME" property="originName"/>
+      <result column="FILE_LEVEL" property="fileLevel"/>
+      <result column="FILE_WRITER" property="fileWriter"/>
+   </resultMap> 
+	
+	<resultMap id="imagesResultSet" type="images">
+		<id column="FILE_NO" property="fileNo"/>
+		<result column="FILE_WRITER" property='fileWriter'/>
+		<result column="ORIGIN_NAME" property="originName"/>
+		<result column="CHANGE_NAME" property="changeName"/>
+		<result column="FILE_PATH" property="filePath"/>
+		<result column="STATUS" property="status"/>
+		<result column="FILE_LEVEL" property="fileLevel"/>
+		<result column="FILE_FNO" property="fileFno"/>
+	</resultMap>  
+	
+	<resultMap id="feedExtResultSet" type="feedExt">
+		<id column="FEED_NO" property="feedNo"/>
+		<result column="FEED_WRITER" property='feedWriter'/>
+		<result column="FEED_CONTENT" property="feedContent"/>
+		<result column="LIKE_STATUS" property="likeStatus"/>
+		<result column="CHOICE_STATUS" property="choiceStatus"/>
+		<result column="LIKE_COUNT" property="likeCount"/>
+		<result column="FEED_HASHTAG" property="feedHashtag"/>
+		<collection property="feedImgList" ofType="Images" javaType="java.util.List"
+		            resultMap="imagesResultSet" />
+	</resultMap> 
+	
+	<resultMap id="feedResultSet" type="feed">
+		<id column="FEED_NO" property="feedNo"/>
+		<result column="FEED_WRITER" property='feedWriter'/>
+		<result column="FEED_CONTENT" property="feedContent"/>
+		<result column="LIKE_STATUS" property="likeStatus"/>
+		<result column="CHOICE_STATUS" property="choiceStatus"/>
+		<result column="LIKE_COUNT" property="likeCount"/>
+		<result column="FEED_HASHTAG" property="feedHashtag"/>
+	</resultMap> 
+	
+	<resultMap id="replyResultSet" type="reply">
+      <id column="REPLY_NO" property="replyNo"/>
+      <result column="REPLY_WRITER" property='replyWriter'/>
+      <result column="REPLY_CONTENT" property="replyContent"/>
+      <result column="REPLY_FNO" property="replyFno"/>
+      <result column="ENROLL_DATE" property="enrollDate"/>
+      <result column="STATUS" property="status"/>
+   </resultMap>  
+   
+   <resultMap id="likeResultSet" type="like">
+      <id column="LIKE_NO" property="likeNo"/>
+      <result column="LIKE_FNO" property='likeFno'/>
+      <result column="LIKE_MEMBER" property="likeMember"/>
+      <result column="LIKE_STATUS" property="likeStatus"/>
+   </resultMap>  
+  
+  <resultMap id="choiceResultSet" type="choice">
+  		<id column="CHOICE_NO" property="choiceNo"/>
+      <result column="CHOICE_FNO" property='choiceFno'/>
+      <result column="CHOICE_MEMBER" property="choiceMember"/>
+      <result column="CHOICE_STATUS" property="choiceStatus"/>
+  </resultMap>
+  
+  <resultMap id="friendResultSet" type="friend">
+  		<id column="FRIEND_NO" property="friendNo"/>
+      <result column="FRIEND_USER1" property='friendUser1'/>
+      <result column="FRIEND_USER2" property="friendUser2"/>
+      <result column="ENABLE" property="enable"/> 
+  </resultMap>
+
+	<insert id="insertFeed" parameterType="feed">
+		INSERT INTO FEED
+		VALUES(
+			SEQ_FEED_NO.NEXTVAL,
+			#{feedWriter},
+			#{feedContent},
+			DEFAULT,
+			DEFAULT,
+			DEFAULT,
+			#{feedHashtag}
+		)
+	</insert>
+	
+	<insert id="insertFeedImg" parameterType="list">
+		INSERT INTO IMAGE(FILE_NO , FILE_FNO, FILE_WRITER , ORIGIN_NAME, CHANGE_NAME, FILE_PATH , STATUS ,FILE_LEVEL )
+	 	SELECT SEQ_FILE_NO.NEXTVAL AS FILE_NO , SEQ_FEED_NO.CURRVAL as FILE_FNO ,  C.* FROM 
+	 	(
+	 		<foreach collection="list" item="img" separator="UNION ALL">
+	 			SELECT
+	 				
+	 				#{img.fileWriter} as FILE_WRITER,
+	 				#{img.originName} as ORIGIN_NAME,
+	 				#{img.changeName} as CHANGE_NAME,
+	 				#{img.filePath} as FILE_PATH,
+	 				'Y' as STATUS,
+	 				#{img.fileLevel} as FILD_LEVEL	 				
+	 			FROM DUAL
+	 		</foreach>
+	 		
+	 	) C
+	</insert>
+	
+	<select id="selectFeedData" parameterType="int" resultMap="feedResultSet">
+		SELECT *
+		FROM FEED
+		WHERE FEED_NO = #{fno}	
+	</select>
+	
+	<select id="selectFeedImgList" parameterType="int" resultMap="imagesResultSet">
+		SELECT *
+		FROM IMAGE
+		WHERE FILE_FNO = #{fno}
+	</select>
+	
+	<update id="updateFeedText" parameterType="feed">
+		UPDATE FEED
+		SET FEED_CONTENT = #{feedContent},
+			FEED_HASHTAG = #{feedHashtag}
+		WHERE FEED_NO = #{feedNo} AND FEED_WRITER = #{feedWriter} 
+	</update>
+	
+	<delete id="deleteImage" parameterType="map">
+		DELETE FROM IMAGE
+		WHERE FILE_FNO = #{feedNo}
+		AND FILE_LEVEL IN (${deleteList})
+	</delete>
+	
+	<update id="updateImage" parameterType="images">
+		UPDATE IMAGE 
+		SET
+		ORIGIN_NAME = #{originName},
+		CHANGE_NAME = #{changeName},
+		FILE_PATH = #{filePath}
+		WHERE FILE_FNO= #{fileFno} AND FILE_LEVEL = #{fileLevel}
+	</update>
+	
+	<insert id="insertImage" parameterType="images">
+		INSERT INTO IMAGE(
+			FILE_NO,
+			FILE_WRITER,
+			ORIGIN_NAME,
+			CHANGE_NAME,
+			FILE_PATH,
+			STATUS,
+			FILE_LEVEL,
+			FILE_FNO
+		) VALUES (
+			SEQ_FILE_NO.NEXTVAL,
+			#{fileWriter},
+			#{originName},
+			#{changeName},
+			#{filePath},
+			'Y',
+			#{fileLevel},
+			#{fileFno}
+		)
+	</insert>
+	
+	<!-- 준호형 파트 -->
+	
+	<select id="profile" parameterType="Int" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER M
+		LEFT JOIN IMAGE I ON I.FILE_WRITER = M.USER_NO 
+		WHERE M.USER_NO IN (
+		    SELECT F1.FRIEND_USER1
+		    FROM FRIEND F1
+		    WHERE F1.FRIEND_USER2 = #{userNo}
+		    UNION
+		    SELECT F2.FRIEND_USER2
+		    FROM FRIEND F2
+		    WHERE F2.FRIEND_USER1 = #{userNo}
+		    ) AND FILE_LEVEL = 1 OR ( USER_NO = #{userNo} AND FILE_LEVEL = 1 ) 
+	</select>  
+	
+	 <select id="feedimg4"  resultMap="imagesResultSet">
+		SELECT *
+		FROM IMAGE
+		WHERE FILE_LEVEL IN (2,3,4,5,6)
+	</select>
+	
+	<select id="feedList4" parameterType="int" resultMap="feedResultSet">
+			SELECT *
+			FROM FEED
+			ORDER BY FEED_NO DESC
+	</select>
+	
+	<select id="reply4" resultMap="replyResultSet">
+		SELECT *
+		FROM REPLY R
+		LEFT JOIN MEMBER M ON R.REPLY_WRITER = M.USER_NO
+		LEFT JOIN IMAGE I ON I.FILE_WRITER = M.USER_NO
+		WHERE I.FILE_LEVEL = 1
+		ORDER BY REPLY_NO DESC
+	</select>
+	
+	<insert id="insertReply" parameterType="Reply">
+		INSERT INTO REPLY
+		VALUES( 
+			SEQ_REPLY_NO.NEXTVAL,
+			#{replyWriter},
+			#{replyContent},
+			#{replyFno},
+			SYSDATE,
+			DEFAULT
+		)
+	</insert>
+	
+	<select id="selectReplyList" resultMap="replyResultSet" parameterType="int">
+		SELECT
+			REPLY_CONTENT,
+			USER_NICK,
+            FILE_PATH,
+            CHANGE_NAME
+		FROM REPLY R
+		JOIN MEMBER M ON R.REPLY_WRITER = M.USER_NO
+		JOIN IMAGE I ON I.FILE_WRITER = R.REPLY_WRITER
+		WHERE REPLY_FNO = #{bno} AND FILE_LEVEL = 1
+		ORDER BY REPLY_NO 
+	</select>
+	
+	<select id="likeCount" parameterType="int" resultMap="feedResultSet">
+		SELECT *
+		FROM FEED F
+		WHERE FEED_NO = ${feedNo}
+	</select>
+	
+	<insert id="insertLike" parameterType="Like" >
+		INSERT INTO LIKE_TABLE
+		VALUES(
+			SEQ_LIKE_NO.NEXTVAL,
+			#{likeFno},
+			#{likeMember},
+			'Y'
+		)
+	</insert>
+	
+	<update id="updateLike" parameterType="Feed">
+		UPDATE FEED
+		SET LIKE_COUNT = (LIKE_COUNT  + 1)
+		WHERE FEED_NO = #{feedNo} 
+	</update>
+	
+	<select id="like4" parameterType="int" resultMap="likeResultSet">
+		SELECT *
+		FROM LIKE_TABLE
+		WHERE LIKE_MEMBER = #{userNo }
+	</select>
+	
+	<delete id="removeLike" parameterType="Like">
+		DELETE LIKE_TABLE
+		WHERE LIKE_MEMBER = #{likeMember} AND LIKE_FNO = #{likeFno}
+	</delete>
+	
+	<update id="removeLikeCount" parameterType="Feed">
+		UPDATE FEED
+		SET LIKE_COUNT = (LIKE_COUNT - 1)
+		WHERE FEED_NO = #{feedNo}	
+	</update>
+	
+	<insert id="addChoice" parameterType="Choice" >
+		INSERT INTO CHOICE
+		VALUES(
+			SEQ_CHOICE_NO.NEXTVAL,
+			#{choiceFno},
+			#{choiceMember},
+			'Y'
+		)
+	</insert>
+	
+	<delete id="removeChoice" parameterType="Choice">
+		DELETE CHOICE
+		WHERE CHOICE_MEMBER = #{choiceMember} AND CHOICE_FNO = #{choiceFno}
+	</delete>
+	
+	<select id="choice4" parameterType="int" resultMap="choiceResultSet">
+		SELECT *
+		FROM CHOICE
+		WHERE CHOICE_MEMBER = #{userNo }
+	</select>
+	
+	<select id="checkChoice" parameterType="choice" resultMap="choiceResultSet">
+		SELECT *
+		FROM CHOICE
+		WHERE CHOICE_FNO = #{choiceFno} AND CHOICE_MEMBER = #{choiceMember}
+	</select>
+	
+	<select id="friend4" parameterType="int" resultMap="friendResultSet">
+		SELECT *
+		FROM FRIEND
+		WHERE FRIEND_USER2 = #{loginUserNo}
+	</select>
+	
+	<select id="friend5" parameterType="int" resultMap="friendResultSet">
+		SELECT *
+		FROM FRIEND
+		WHERE FRIEND_USER1 = #{loginUserNo}
+	</select>
+	
+	   <delete id="unFollow" parameterType="Map">
+      DELETE 
+      FROM FRIEND F
+      WHERE FRIEND_USER1 = #{userNo} AND FRIEND_USER2 = #{loginUserNo}
+   </delete>
+
+   <insert id="addFollow" parameterType="Map">
+      INSERT INTO FRIEND VALUES(
+         
+         SEQ_FRIEND_NO.NEXTVAL,
+         #{userNo},
+         #{loginUserNo},
+         DEFAULT
+         )
+   </insert>
+   
+   <select id="choiceFilter" resultMap="choiceResultSet">
+   		SELECT *
+   		FROM CHOICE	C
+   		LEFT JOIN FEED F ON F.FEED_NO = C.CHOICE_FNO 
+   		WHERE CHOICE_MEMBER = #{userNo}
+   </select>
+   
+   <select id="friendList" parameterType="int" resultMap="friendResultSet">
+         SELECT *
+         FROM FRIEND
+      WHERE FRIEND_USER1 = ${loginUserNo} OR FRIEND_USER2 = #{loginUserNo}
+   </select>
+	
+</mapper>

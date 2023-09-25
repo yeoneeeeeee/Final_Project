@@ -1,0 +1,1327 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+body {
+    margin: 0;
+    box-sizing: border-box;
+    background-color: black;
+    height: 100%;
+    font-family: 'pretendard';
+}
+
+.wrap {
+    height: 100vh;
+    overflow: hidden;
+}
+
+
+/* ============================================================= */
+/* 而⑦뀗痢� �쁺�뿭 */
+/* ============================================================= */
+.contents {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+    height: 100%;
+}
+
+/* ============================================================= */
+/* 硫붿씤 而⑦뀗痢� */
+/* ============================================================= */
+
+.main-content {
+    width: 50vw;
+    height: 100%;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    min-width: 400px;
+    //max-width : 800px;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+/* =================================================================*/
+/* ===========================My-Feed===============================*/
+.profile-imgs {
+    margin-right: 70px;
+}
+.profile-imgs img {
+    width: 120px;
+    height: 120px;
+    border-radius: 500px;
+    margin: 60px 0;
+}
+.user_Id {
+    margin: 0 0 5px 0;
+}
+.user_Id img {
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    border-radius: 500px;
+}
+.user_name {
+    font-size: 15px;
+    margin-bottom: 20px;
+    color: gray;
+}
+/* .btn:hover {
+    cursor: pointer;
+    background-color: white !important;
+    color: black !important;
+    border-color: black;
+} */
+.mypage-profile-container {
+    width: 100%;
+    height: 220px;
+    display: flex;
+    justify-content: center;
+}
+
+.update_profile {
+    position: absolute;
+    left: 275px;
+    top: -5px;
+}
+
+.update_profile > .btn {
+    background-color: rgb(40, 43, 43);
+    border-radius: 0.5rem;
+    padding-top: 7px;
+    height: 35px;
+}
+
+.update_profile > .btn:first-child:hover {
+    background-color: rgb(73, 73, 73);
+}
+.update_profile > .btn:last-child:hover {
+    background-color: #1872f2;
+}
+
+.update_profile > .btn:last-child {
+    background-color: #0095f7;
+}
+
+.update_profile h6 {
+    font-size: 15px;
+}
+
+.icon2 {
+    font-size: 10px;
+    color: white;
+}
+.icon3 {
+    font-size: 25px !important;
+    color: white;
+}
+
+.mypage-setbox {
+    color: white;
+    font-size: 24px;
+    margin-top: 80px;
+    width: 60%;
+    position: relative;
+}
+
+.setbox-header {
+    display: flex;
+}
+
+.user_Id {
+    width: 300px !important;
+    font-size: 20px;
+}
+
+.mypage-follower {
+    width: 100%;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+}
+
+.follows {
+    width: 180px;
+}
+
+.mypage-follower h5 {
+    font-size: 15px;
+    margin: 5px 0;
+}
+
+.btn-locate1 {
+    width: 100px;
+    height: 40px;
+}
+
+.span-locate1 {
+    position: absolute;
+    margin-top: -38px;
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+    display: none;
+}
+.mypage-logout {
+    margin-left: -120px;
+    margin-top: -25px;
+}
+.span-locate2 {
+    position: absolute;
+    margin-left: 20px;
+    margin-top: -32px;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    display: none;
+}
+.span-locate22 {
+    position: absolute;
+    margin-left: 8px;
+    margin-top: -28px;
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+    display: none;
+}
+.mypage-selectbox {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid rgb(43, 43, 43);
+}
+
+/* .mypage-selectbox * {
+    border: 1px solid grey;
+} */
+
+.mypage-selectbox .selectbox {
+    height: 100%;
+    margin: 0 30px;
+}
+
+.selectbox .selectbox-btn {
+    width: 100px;
+    height: 100%;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.selectbox .selectbox-btn:hover {
+    border-top: 2px solid white;
+    color: white;
+}
+
+.selectbox span {
+    color: white;
+    font-size: 20px;
+    font-weight: 200;
+}
+
+.selectbox h5 {
+    color: grey;
+    font-size: 13px;
+    margin-top: 7px;
+    padding: 0 5px;
+}
+.selectbox h5:hover {
+    color: white;
+}
+
+.img-size {
+    width: 300px;
+    height: 300px;
+}
+.myimage {
+    display: grid;
+    grid-template-columns: 300px 300px 300px;
+    grid-template-rows: 300px;
+    gap: 5px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom : 100px;
+}
+
+.myimage img:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+.choice1 {
+    display: none;
+}
+.choice2 {
+    display: none;
+}
+.change {
+    display: flex !important;
+    color:white !importnat;
+    border-top : 1px solid white;
+}
+.list2 {
+    width: 50vw;
+    height: 10vh;
+}
+.list1 {
+    height: 10vh;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+.btn-danger:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.btn-lg {
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: 0.3rem;
+}
+.like {
+    opacity: 0;
+    color: white;
+    position: absolute;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 5;
+    width: 300px;
+    height: 300px;
+    text-align: center;
+    line-height: 300px;
+}
+.like:hover {
+    filter: brightness(1); /* �뼱�몢�슫 �븘�꽣 */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* 洹몃┝�옄 �슚怨� */
+    transition: filter 0.3s, box-shadow 0.3s;
+    opacity: 1;
+    cursor: pointer;
+}
+.myimage-section {
+    position: relative;
+}
+/* 遺��듃�뒪�듃�옪 寃뱀튂�뒗嫄� */
+h5 {
+    font-size: 10px;
+}
+p {
+    margin-top: 10px;
+}
+a {
+    color: white;
+}
+a:hover {
+    color: white;
+    text-decoration: none !imiportant;
+}
+
+/* 紐⑤떖�뒪���씪 */
+.report_title {
+    font-size: 25px;
+    border-bottom: 1px solid white;
+    padding: 5px;
+}
+.report_content {
+    text-align: center;
+    margin-left: 20px;
+    border: 1px solid white;
+    width: 420px;
+    font-size: 20px;
+    border-radius: 0.5rem;
+}
+.swal-modal {
+    background-color: black;
+    border: 1px solid white;
+}
+.swal-text {
+    text-align: center;
+    color: white;
+}
+.swal-title {
+    text-align: center;
+    color: white;
+}
+.swal-icon--success:before {
+    display: none;
+}
+.swal-icon--success:after {
+    display: none;
+}
+.swal-icon--success__hide-corners {
+    display: none;
+}
+.btn-box {
+    display: flex;
+    justify-content: center;
+}
+
+/* ============================================================= */
+/* �뵾�뱶 紐⑤떖  */
+/* ============================================================= */
+
+#MyDetailFeed .modal-content {
+    border : 1px solid rgba(255,255,255,0.3) !important;
+    background-color: rgb(0, 0, 0) !important;
+}
+
+#MyDetailFeed .modal-header {
+    width: 65% !important;
+    /* margin-right: 5% !important; */
+    border-bottom: 1px solid rgba(255,255,255,0.3) !important;
+    border-right: 1px solid rgba(255,255,255,0.3) !important;
+    position: relative;
+}
+
+#MyDetailFeed .modal-user-profile {
+    width: 650px;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 10px;
+}
+
+#MyDetailFeed .modal-user-profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    margin-left: 10px;
+    background-color: white;
+}
+
+#MyDetailFeed .modal-user-profile>span:nth-child(2) {
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+
+#MyDetailFeed .modal-user-profile>span:nth-child(3) {
+    font-size: 35px;
+    font-weight: 900;
+    margin-left: 65%;
+    cursor: pointer;
+}
+
+
+#MyDetailFeed .modal-close {
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border: 0px;
+    color: white;
+    font-weight: 500;
+    font-size: 26px;
+}
+
+
+#MyDetailFeed .modal-user-profile .modal-more-options {
+    display: none;
+    position: absolute;
+    right: -40px;
+    top: 60px;
+    width: 160px;
+    z-index: 50;
+    overflow: hidden;
+}
+
+#MyDetailFeed .modal-more-options>div {
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 15px;
+    background-color: black;
+    line-height: 30px;
+}
+
+#MyDetailFeed .modal-more-options dl {
+    margin: 15px 15px;
+    font-size: 13px;
+    line-height: 35px;
+}
+
+#MyDetailFeed .modal-more-options dt {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    padding: 3px 0 0 6px;
+    transition: all .25s;
+    cursor : pointer;
+}
+
+#MyDetailFeed .modal-more-options dt:hover { 
+    transition: all .25s;
+    background-color: rgba(115,115,115, 0.4);
+    border-radius: 10px;
+}
+
+#MyDetailFeed .modal-more-options span {
+    font-size: 20px;
+}
+
+#MyDetailFeed .modal-more-options a {
+    margin-left: 10px;
+}
+
+
+
+
+#MyDetailFeed .modal-body {
+    display: flex;
+    height: 650px;
+    /* border-top: 1px solid rgba(255,255,255,0.3); */
+    padding: 0 !important;
+}
+
+#MyDetailFeed .modal-feed-body {
+    width: 65%;
+    border-right: 1px solid rgba(255,255,255,0.3);
+}
+
+
+#MyDetailFeed .modal-feed-body img{
+    width: 100%;
+    margin: 0 auto;
+    height: 430px;
+    object-fit:contain;
+}
+
+#MyDetailFeed .modal-feed-body .feed-tools {
+    border-top: 1px solid rgba(255,255,255,0.3) !important;
+    margin: 5px auto 0;
+    padding: 15px;
+    color:white;
+    display: flex;
+    align-items: center;
+}
+
+
+#MyDetailFeed .modal-feed-body .feed-tools svg {
+    margin-left: 10px;
+}
+
+#MyDetailFeed .modal-feed-body .feed-tools .clickable-svg:nth-child(1) {
+    cursor: pointer;
+    z-index: 10;
+}
+
+#MyDetailFeed .modal-feed-body .feed-tools .clickable-svg:nth-child(2) {
+    margin-left: 20px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+#MyDetailFeed .modal-feed-body .feed-tools .clickable-svg:nth-child(3) {
+    font-size: 25px;
+    z-index: 10;
+    margin-left: 80%;
+    cursor: pointer;
+}
+#MyDetailFeed .more-options .choice-control-js svg{
+	position:absolute;
+	top : 29px;
+	left : 22px;
+	}
+
+#MyDetailFeed .choice-control-js a{
+	margin :0 0 0 32px;
+}
+
+
+#MyDetailFeed .modal-feed-body .feed-text {
+    width: 91%;
+    margin: auto;
+    color: rgb(179, 179, 179);
+    font-size: 13px;
+    line-height: 24px;
+    word-wrap: break-word;
+    margin-left: 20px;
+}
+
+
+#MyDetailFeed .modal-feed-body .feed-text span:nth-child(3) {
+    width: 100%;
+    font-size: 15px;
+    color: white;
+}
+
+
+#MyDetailFeed .modal-feed-footer {
+    width: 35%;
+    padding-bottom: 20px;
+    position: relative;
+}
+
+
+#MyDetailFeed .modal-feed-footer .reply-wrap{
+    width: 100%;
+    height: 110%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    top: -90px;;
+}
+
+#MyDetailFeed .modal-feed-footer .reply-middle {
+    width: 100%;
+    height: 100%;
+    margin: 10px auto;
+    overflow-y: auto;
+    height: 80vh;
+}
+
+#MyDetailFeed .modal-feed-footer .reply-middle dl {
+    margin: 0;
+}
+
+#MyDetailFeed .modal-feed-footer .reply-middle dt {
+    margin: auto;
+    width: 90%;
+    display: flex;
+    height: 50px;
+    padding: 2px 10px;
+    align-items: center;
+    transition: all .25s;
+    margin-top:15px;
+}
+
+#MyDetailFeed .modal-feed-footer .reply-middle dt:hover {
+    background-color: rgba(115,115,115, 0.2);
+    transition: all .25s;
+    border-radius: 15px;
+}
+
+#MyDetailFeed .modal-feed-footer .reply-middle img{
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+}
+
+#MyDetailFeed .modal-feed-footer .reply-list {
+    display: flex;
+    margin-left: 15px ;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    font-size: 14px;
+    color: lightgray;
+}
+
+#MyDetailFeed .modal-feed-footer .reply-list span:last-child {
+    color: gray;
+    font-size: 13px;
+}
+
+#MyDetailFeed .modal-feed-footer .reply-bottom {
+    width: 93%;
+    padding-top: 6px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* border-top: 1px solid rgba(255,255,255,0.3); */
+}
+
+#MyDetailFeed .modal-feed-footer .reply-bottom input {
+    margin-top: 10px;
+    width: 85%;
+    height: 33px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.3);
+    padding-left: 10px;
+    background-color: transparent;
+    color: white;
+}
+
+#MyDetailFeed .modal-feed-footer .reply-bottom input:focus{
+    outline: 0;
+}
+
+#MyDetailFeed .modal-feed-footer .reply-bottom button {
+    margin-top: 10px;
+    height: 33px;
+    background-color: transparent;
+    color: lightgray;
+    border: 0;
+}
+/* Modal2 */
+#MyDetailFeed2 .modal-content {
+    border : 1px solid rgba(255,255,255,0.3) !important;
+    background-color: rgb(0, 0, 0) !important;
+}
+
+#MyDetailFeed2 .modal-header {
+    width: 65% !important;
+    /* margin-right: 5% !important; */
+    border-bottom: 1px solid rgba(255,255,255,0.3) !important;
+    border-right: 1px solid rgba(255,255,255,0.3) !important;
+    position: relative;
+}
+
+#MyDetailFeed2 .modal-user-profile {
+    width: 650px;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 10px;
+}
+
+#MyDetailFeed2 .modal-user-profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    margin-left: 10px;
+    background-color: white;
+}
+
+#MyDetailFeed2 .modal-user-profile>span:nth-child(2) {
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+
+#MyDetailFeed2 .modal-user-profile>span:nth-child(3) {
+    font-size: 35px;
+    font-weight: 900;
+    margin-left: 65%;
+    cursor: pointer;
+}
+
+
+#MyDetailFeed2 .modal-close {
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border: 0px;
+    color: white;
+    font-weight: 500;
+    font-size: 26px;
+}
+
+
+#MyDetailFeed2 .modal-user-profile .modal-more-options {
+    display: none;
+    position: absolute;
+    right: -40px;
+    top: 60px;
+    width: 160px;
+    z-index: 50;
+    overflow: hidden;
+}
+
+#MyDetailFeed2 .modal-more-options>div {
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 15px;
+    background-color: black;
+    line-height: 30px;
+}
+
+#MyDetailFeed2 .modal-more-options dl {
+    margin: 15px 15px;
+    font-size: 13px;
+    line-height: 35px;
+}
+
+#MyDetailFeed2 .modal-more-options dt {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    padding: 3px 0 0 6px;
+    transition: all .25s;
+    cursor : pointer;
+}
+
+#MyDetailFeed2 .modal-more-options dt:hover { 
+    transition: all .25s;
+    background-color: rgba(115,115,115, 0.4);
+    border-radius: 10px;
+}
+
+#MyDetailFeed2 .modal-more-options span {
+    font-size: 20px;
+}
+
+#MyDetailFeed2 .modal-more-options a {
+    margin-left: 10px;
+}
+
+
+
+
+#MyDetailFeed2 .modal-body {
+    display: flex;
+    height: 650px;
+    /* border-top: 1px solid rgba(255,255,255,0.3); */
+    padding: 0 !important;
+}
+
+#MyDetailFeed2 .modal-feed-body {
+    width: 65%;
+    border-right: 1px solid rgba(255,255,255,0.3);
+}
+
+
+#MyDetailFeed2 .modal-feed-body img{
+    width: 100%;
+    margin: 0 auto;
+    height: 430px;
+    object-fit:contain;
+}
+
+#MyDetailFeed2 .modal-feed-body .feed-tools {
+    border-top: 1px solid rgba(255,255,255,0.3) !important;
+    margin: 5px auto 0;
+    padding: 15px;
+    color:white;
+    display: flex;
+    align-items: center;
+}
+
+
+#MyDetailFeed2 .modal-feed-body .feed-tools svg {
+    margin-left: 10px;
+}
+
+#MyDetailFeed2 .modal-feed-body .feed-tools .clickable-svg:nth-child(1) {
+    cursor: pointer;
+    z-index: 10;
+}
+
+#MyDetailFeed2 .modal-feed-body .feed-tools .clickable-svg:nth-child(2) {
+    margin-left: 20px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+#MyDetailFeed2 .modal-feed-body .feed-tools .clickable-svg:nth-child(3) {
+    font-size: 25px;
+    z-index: 10;
+    margin-left: 80%;
+    cursor: pointer;
+}
+#MyDetailFeed2 .more-options .choice-control-js svg{
+	position:absolute;
+	top : 29px;
+	left : 22px;
+	}
+
+#MyDetailFeed2 .choice-control-js a{
+	margin :0 0 0 32px;
+}
+
+
+#MyDetailFeed2 .modal-feed-body .feed-text {
+    width: 91%;
+    margin: auto;
+    color: rgb(179, 179, 179);
+    font-size: 13px;
+    line-height: 24px;
+    word-wrap: break-word;
+    margin-left: 20px;
+}
+
+
+#MyDetailFeed2 .modal-feed-body .feed-text span:nth-child(3) {
+    width: 100%;
+    font-size: 15px;
+    color: white;
+}
+
+
+#MyDetailFeed2 .modal-feed-footer {
+    width: 35%;
+    padding-bottom: 20px;
+    position: relative;
+}
+
+
+#MyDetailFeed2 .modal-feed-footer .reply-wrap{
+    width: 100%;
+    height: 110%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    top: -90px;;
+}
+
+#MyDetailFeed2 .modal-feed-footer .reply-middle {
+    width: 100%;
+    height: 100%;
+    margin: 10px auto;
+    overflow-y: auto;
+    height: 80vh;
+}
+
+#MyDetailFeed2 .modal-feed-footer .reply-middle dl {
+    margin: 0;
+}
+
+#MyDetailFeed2 .modal-feed-footer .reply-middle dt {
+    margin: auto;
+    width: 90%;
+    display: flex;
+    height: 50px;
+    padding: 2px 10px;
+    align-items: center;
+    transition: all .25s;
+    margin-top:15px;
+}
+
+#MyDetailFeed2 .modal-feed-footer .reply-middle dt:hover {
+    background-color: rgba(115,115,115, 0.2);
+    transition: all .25s;
+    border-radius: 15px;
+}
+
+#MyDetailFeed2 .modal-feed-footer .reply-middle img{
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+}
+
+#MyDetailFeed2 .modal-feed-footer .reply-list {
+    display: flex;
+    margin-left: 15px ;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    font-size: 14px;
+    color: lightgray;
+}
+
+#MyDetailFeed2 .modal-feed-footer .reply-list span:last-child {
+    color: gray;
+    font-size: 13px;
+}
+
+#MyDetailFeed2 .modal-feed-footer .reply-bottom {
+    width: 93%;
+    padding-top: 6px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* border-top: 1px solid rgba(255,255,255,0.3); */
+}
+
+#MyDetailFeed2 .modal-feed-footer .reply-bottom input {
+    margin-top: 10px;
+    width: 85%;
+    height: 33px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.3);
+    padding-left: 10px;
+    background-color: transparent;
+    color: white;
+}
+
+#MyDetailFeed2 .modal-feed-footer .reply-bottom input:focus{
+    outline: 0;
+}
+
+#MyDetailFeed2 .modal-feed-footer .reply-bottom button {
+    margin-top: 10px;
+    height: 33px;
+    background-color: transparent;
+    color: lightgray;
+    border: 0;
+}
+
+
+/* ============================================================= */
+/* 怨듭쑀 紐⑤떖  */
+/* ============================================================= */
+
+.shareTool  .modal-content , #shareToolMain  .modal-content {
+    background-color: black !important;
+    border: 1.5px solid rgba(255,255,255,0.3) !important;
+    border-radius: 15px !important;
+    color: white;
+    width: 400px !important;
+}
+
+.shareTool .modal-header, #shareToolMain .modal-header {
+    text-align: center !important;
+    border-bottom: 1.5px solid rgba(255,255,255,0.3) !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.shareTool .modal-header>h5, #shareToolMain .modal-header>h5 {
+    font-size: 16px !important;
+}
+
+.shareTool .modal-header>form, #shareToolMain .modal-header>form {
+    width: 100%;
+}
+
+.shareTool .modal-header input[type=search], #shareToolMain .modal-header input[type=search]{
+    margin-top: 20px;
+    width: 100%;
+    height: 40px;
+    background-color: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 10px;
+    font-size: 14px;
+    padding-left: 20px;
+}
+
+.shareTool .modal-header input[type=search]:focus , #shareToolMain .modal-header input[type=search]:focus {
+    outline: 0;
+    color: white;
+}
+
+.shareTool .modal-body, #shareToolMain .modal-body {
+    width: 100%;
+    height: 500px !important;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.shareTool .list-btn, #shareToolMain .list-btn  {
+    width: 100%;
+    display: flex;
+    text-align: center;
+}
+
+.shareTool .modal-body .list-btn span, #shareToolMain .modal-body .list-btn span  {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 40px;
+    width: 50%;
+    border: 1px solid rgba(255,255,255,0.3);
+    font-size: 14px;
+    color: gray;
+}
+
+.shareTool .modal-body .list-btn>span:hover, #shareToolMain .modal-body .list-btn>span:hover {
+    color:black;
+    background-color: rgb(204, 204, 204) !important;
+    transition: all .35s;
+}
+
+.shareTool .modal-body .lists, #shareToolMain .modal-body .lists {
+    overflow: auto !important;
+}
+
+.shareTool .focus-btn, #shareToolMain .focus-btn {
+    color:black !important;
+    background-color: rgb(204, 204, 204) !important;
+    transition: all .35s;
+}
+
+.shareTool .modal-body .follower-list,
+#shareToolMain .modal-body .follower-list,
+.shareTool .modal-body .chatting-list,
+#shareToolMain .modal-body .chatting-list {
+    margin-top: 10px;
+    height: 100%;
+    padding-bottom: 50px;
+}
+
+.shareTool .modal-body .follower-list dt,
+#shareToolMain .modal-body .follower-list dt,
+.shareTool .modal-body .chatting-list dt,
+#shareToolMain .modal-body .chatting-list dt {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content : space-between;
+    margin-top: 18px;
+}
+
+.shareTool .follower-list dt img, #shareToolMain .follower-list dt img{
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+}
+
+.shareTool .chatting-list dt img, #shareToolMain .chatting-list dt img {
+	width: 17px;
+    height: 17px;
+    border-radius: 18px;
+}
+
+.shareTool .follower-list dt label,
+#shareToolMain .follower-list dt label,
+.shareTool .chatting-list dt span,
+#shareToolMain .chatting-list dt span{
+    font-size: 15px;
+    font-weight: 500;
+    margin-left: 18px;
+    color: lightgray;
+    margin : auto;
+    margin-left : 20px;
+}
+
+.shareTool .follower-list dt input[type=checkbox],
+#shareToolMain .follower-list dt input[type=checkbox],
+.shareTool .chatting-list dt input[type=checkbox],
+#shareToolMain .chatting-list dt input[type=checkbox] {
+    width: 15px;
+    height: 15px;
+    border: 1px solid rgba(115,115,115, 0.3) !important;
+    border-radius: 9px !important;
+    background-color: transparent !important;
+}
+
+.shareTool .follower-list dt>div,
+#shareToolMain .follower-list dt>div,
+.shareTool .chatting-list dt>div,
+#shareToolMain .chatting-list dt>div {
+	display:flex;
+}
+
+.shareTool .userCount, #shareToolMain .userCount {
+	width: 36px;
+    height: 36px;
+	display : grid;
+	grid-template-rows:repeat(2, 17px);
+	grid-template-columns:repeat(2, 17px);
+	gap : 1px;
+	justify-content : center;
+	align-items : center;
+	overflow:hidden;
+}
+
+
+.shareTool dt .titleWrap, #shareToolMain dt .titleWrap {
+	width : 250px;
+	white-space:nowrap;
+	overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.shareTool .modal-footer, #shareToolMain .modal-footer {
+    border: 0 !important;
+}
+
+.shareTool .modal-footer button, #shareToolMain .modal-footer button {
+    width: 100px;
+    padding: 5px 15px !important;
+    border-radius: 7px;
+    border: 1px solid rgba(255,255,255, 0.3) !important;
+    color: lightgray;
+    background-color: transparent !important;
+}
+
+.shareTool .modal-footer button:hover,
+#shareToolMain .modal-footer button:hover {
+    color:black;
+    background-color: rgb(204, 204, 204) !important;
+    transition: all .35s;
+}
+
+.shareTool .empty-follow-info,
+#shareToolMain .empty-follow-info {
+	width : 100%;
+	height : 400px;
+	display : flex;
+	align-items : center;
+	justify-content : center;
+}
+
+.shareTool .empty-follow,
+#shareToolMain .empty-follow {
+	color : gray;
+	font-weight : 400;	
+}
+
+
+
+
+
+
+
+
+/* ============================================================= */
+/* �꽌釉� 而⑦뀗痢�  */
+/* ============================================================= */
+
+.sub-content {
+    width: 25vw;
+    min-width: 400px;
+    height: 100%;
+    /* border: 1px solid white; */
+}
+
+.sub-wrap {
+    width: 350px;
+    height: 500px;
+    margin : 70px 50px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    /* background-color: white; */
+}
+.Ranking {
+    color: white;
+    text-align: center;
+    margin: 30px 15px;
+}
+
+.Rangking_Title{
+    font-size:25px;
+}
+.Ranking_Content{
+    display:flex;
+}
+.num{
+    font-size:15px;
+}
+.Ranking_Num{
+    font-size:15px;
+    margin-left:30px;
+}
+
+.main-header-alarm{
+	margin-top:7% !important;
+}
+
+.more-alarm24{
+	margin : 15px 20px 0 0 ;
+}
+.hashTag-modal {
+    margin-top: 3px;
+    color: rgb(124, 124, 158) !important;
+    cursor:pointer;
+}
+
+/* report Modal */
+#reportBtn .modal-dialog {
+    padding-top: 120px;
+}
+
+#reportBtn .modalstyle {
+    background-color: rgb(44, 44, 44);
+    color: white;
+    border-radius: 15px;
+}
+#reportBtn .modal-bottom {
+    text-align: center;
+    justify-content: center;
+}
+
+#reportBtn .modal-header {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    border-bottom: 1px solid #4a4a4a;
+}
+
+#reportBtn .modal-title {
+    padding-left: 190px;
+    font-size: 16px;
+}
+
+#reportBtn .close_btn_style {
+    border-radius: 0.5rem;
+    background-color: transparent;
+    color: white;
+    border: 0 solid white;
+}
+#reportBtn .report_title {
+    font-size: 16px;
+    padding: 5px;
+    text-align: center;
+}
+#reportBtn .report_content {
+    text-align: center;
+    margin-left: 20px;
+    width: 420px;
+    font-size: 16px;
+    border-radius: 0.5rem;
+    border:0;
+}
+
+#reportBtn .report_content{
+	cursor:pointer;
+}
+
+/* 紐⑤떖�뒪���씪2 */
+
+#detailReport .modal-dialog {
+    padding-top: 120px;
+}
+
+#detailReport .modalstyle {
+    background-color: rgb(44, 44, 44);
+    color: white;
+    border-radius: 15px;
+}
+#detailReport .modal-bottom {
+    text-align: center;
+    justify-content: center;
+}
+
+#detailReport .modal-header {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    border-bottom: 1px solid #4a4a4a;
+}
+
+#detailReport .modal-title {
+    padding-left: 190px;
+    font-size: 16px;
+}
+
+#detailReport .close_btn_style {
+    border-radius: 0.5rem;
+    background-color: transparent;
+    color: white;
+    border: 0 solid white;
+}
+#detailReport .report_title {
+    font-size: 16px;
+    padding: 5px;
+    text-align: center;
+}
+#detailReport .report_content {
+    text-align: center;
+    margin-left: 20px;
+    width: 420px;
+    font-size: 16px;
+    border-radius: 0.5rem;
+}
+.swal-modal {
+    background-color: rgb(44, 44, 44);
+    border: 1px solid rgb(196, 196, 196);
+}
+.swal-text {
+    text-align: center;
+    color: white;
+}
+.swal-title {
+    font-size: 20px;
+    text-align: center;
+    color: white;
+}
+.swal-icon--success:before {
+    display: none;
+}
+.swal-icon--success:after {
+    display: none;
+}
+.swal-icon--success__hide-corners {
+    display: none;
+}
+.btn-box {
+    display: flex;
+    justify-content: center;
+}	
+	

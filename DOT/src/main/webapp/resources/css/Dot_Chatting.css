@@ -1,0 +1,1232 @@
+body {
+    margin : 0;
+    box-sizing: border-box;
+    height: 100%;
+    background-color: black !important;
+}
+
+
+
+.wrap {
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ============================================================= */
+/* 컨텐츠 영역 */
+/* ============================================================= */
+.contents {
+    display: flex;
+    width: 100%;
+    height: 85%;
+    bottom: 1px solid white;
+}
+
+
+/* ============================================================= */
+/* 채팅 리스트 */
+/* ============================================================= */
+
+.chat-list-wrap {
+    width: 40%;
+    min-width: 800px;
+    height: 85vh;
+    display: flex;
+    justify-content: end;
+    color:rgb(200, 200, 200);
+    overflow: hidden;
+}
+
+.chat-wrap {
+    width: 400px;
+    margin: 30px 20px 0 0;
+    margin-right: 20px;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.chat-header {
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    width: 95%;
+    height: 5%;
+    padding-bottom: 20px;
+    font-size: 30px;
+    font-weight: 900;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.chat-header>span:nth-child(1) {
+    margin-left: 15px;
+    color: white;
+}
+
+.chat-header>span:nth-child(3) {
+	margin-left:5%;	
+}
+
+.chat-header>span:nth-child(5) {
+    margin-left: 5%;
+    margin-right: 10px;
+}
+
+.chat-header>span:nth-child(4),
+.chat-header>span:nth-child(5) {
+    font-size: 35px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .35s;
+}
+
+.chat-header label input {
+    position: absolute;
+    right: 120px;
+    top: -11px;
+    width: 0px;
+    height: 40px;
+    font-size: 13px;
+    padding: 0 10px;
+    border-radius: 10px;
+    background-color: black;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    transition: all .35s;
+    opacity: 0;
+}
+
+#chat-search {
+    width: 30px;
+    height: 40px;
+    position: absolute;
+    right: 64px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+#chat-search:hover + form + span  {
+    font-weight: bold;
+    color:rgb(255, 255, 255);
+}
+
+#chat-search:checked + form label input {
+    width: 250px;
+    opacity: 1;
+}
+
+.chat-header input:focus {
+    outline: 0;
+}
+
+.chat-header .more-options {
+    display: none;
+    position: absolute;
+    right: -30px;
+    top: 30px;
+    width: 160px;
+    z-index: 50;
+    overflow: hidden;
+}
+
+.more-options>div {
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 15px;
+    background-color: black;
+    line-height: 30px;
+}
+
+.more-options dl {
+    margin: 15px 15px;
+    font-size: 13px;
+    line-height: 35px;
+}
+
+.more-options dt {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    padding: 3px 0 0 6px;
+    transition: all .25s;
+}
+
+.more-options dt:hover { 
+    transition: all .25s;
+    background-color: rgba(115,115,115, 0.4);
+    border-radius: 10px;
+    color: white;
+}
+
+.more-options dt span:nth-child(2) {
+    margin-left: 10px;
+}
+
+
+.add_box:hover {
+    font-weight: 900;
+    color:rgb(255, 255, 255);
+}
+
+.chat-header form {
+	width:100%;
+	height : 100%;
+}
+
+.chat-wrap > form {
+    width: 100%;
+    height: 73vh;
+    overflow-y: auto;
+}
+
+.chat-list .deleteListBtn {
+    height: 50px;
+    width: 100%;
+    background-color: black;
+    color:white;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.chat-list .deleteListBtn:hover {
+    transition: all .35s;
+    background-color: rgba(115,115,115, 0.2);
+}
+
+.list-info-wrap {
+    height: 60px;
+}
+
+.empty-list-info {
+	width : 100%;
+	height : 500px;
+	display : flex;
+	align-items : center;
+	justify-content : center;
+}
+
+.empty-list {
+	color : gray;
+	font-weight : 500;	
+}
+
+.empty-follow-info {
+	width : 100%;
+	height : 400px;
+	display : flex;
+	align-items : center;
+	justify-content : center;
+}
+
+.empty-follow {
+	color : gray;
+	font-weight : 400;	
+}
+
+.list-info>.deleteCheck {
+    width: 25px;
+    height: 25px;
+    margin: 0 10px;
+}
+
+.chat-list dt:hover .list-info-wrap {
+    background-color: rgba(115,115,115, 0.2);
+}
+
+.list-info-wrap {
+    width: 100%;
+    padding : 0 10px;
+}
+
+.list-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    padding: 10px auto;
+}
+
+
+.list-info img {
+    width: 23px;
+    height:23px;
+    border-radius: 15px;
+}
+
+.list-info .userCount {
+	width : 80px;
+	height :50px;
+	display : grid;
+	grid-template-rows:repeat(2, 24px);
+	grid-template-columns:repeat(2, 24px);
+	gap : 1px;
+	justify-content : center;
+	align-items : center;
+	overflow:hidden;
+}
+
+.list-text {
+    width: 100%;
+    padding-left: 10px;
+    line-height: 22px;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.list-top {
+	width: 100%;
+    display: flex;
+    justify-content: space-between;
+    color: rgb(229, 229, 229) !important;
+}
+
+.list-top>div {
+	width : 150px;
+    display : flex;
+    
+}
+
+.list-top>div>span:first-child {
+    white-space:nowrap;
+	overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.list-top>div>span:last-child {
+	color: gray;
+	margin-left : 10px;
+}
+
+
+.list-top>span {
+    color: gray;
+    font-size : 13px;
+    margin-right : 10px;
+}
+
+.list-bot {
+    color: rgb(157, 157, 157);
+}
+
+
+
+/* ============================================================= */
+/* 채팅 방  */
+/* ============================================================= */
+
+.chat-room-wrap {
+    width: 40%;
+    min-width: 500px;
+    height: 100%;
+    color:white;
+    display: flex;
+    justify-content: end;
+}
+
+.room-wrap {
+    width: 100%;
+    margin-top: 30px;
+    margin-left: 25px;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.room-header {
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    width: 95%;
+    height: 5%;
+    padding-bottom: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-wrap {
+    width: 95%;
+    margin-bottom : 10px;
+    display: flex;
+    align-items: center;
+}
+
+.room-header .userCount {
+	width : 56px;
+	height :50px;
+	display : grid;
+	grid-template-rows:repeat(2, 24px);
+	grid-template-columns:repeat(2, 24px);
+	gap : 1px;
+	justify-content : center;
+	align-items : center;
+	overflow:hidden;
+	//border : 1px solid white;
+}
+
+.room-header img {
+    //margin-left: 2%;
+    width: 23px;
+    height:23px;
+    border-radius: 15px;
+}
+
+.room-header span:nth-child(2) {
+    margin-left: 5%;
+    max-width: 60%;
+    width:600px;
+    white-space:nowrap;
+	overflow:hidden;
+    text-overflow:ellipsis;
+    font-weight : 900;
+}
+
+.user-id {
+    height: 100%;
+    cursor: pointer;
+}
+
+.user-id a {
+	font-weight : 500 !important;
+}
+
+
+.user-id:hover {
+    text-decoration: underline;
+}
+
+.room-body {
+    height: 65%;
+    min-height: 300px;
+    max-height: 700px;
+    width: 95%;
+    margin: auto;
+    /* overflow: auto; */
+}
+
+.room-body li {
+    text-decoration: none;
+}
+
+.display-chatting {
+    height:100%;
+    overflow: auto; /*스크롤 처럼*/
+    list-style:none;
+    padding: 10px 10px;
+    z-index: 1;
+    margin: auto;
+}
+
+.myChat{
+	margin-top : 0.5rem;
+    display : flex;
+    flex-direction : row;
+    align-items : end;
+    justify-content : end;
+}
+
+.myChat>div {
+	display : flex;
+	flex-direction : column;
+	justify-content : end;
+	align-items : end;
+}
+
+.myChat p {
+	margin-top : 0.5rem;
+	margin-bottom : 0;
+    background-color : #3856E7;
+}
+
+.otherChat b {
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.otherChat {
+	margin-top : 1.5rem;
+}
+
+.otherChat>div>div {
+	display :flex;
+	flex-direction : column;
+	justify-content : end;
+	align-items : end;
+}
+
+.otherChat>div:nth-child(2) {
+	display : flex;
+    flex-direction : row;
+    align-items : end;
+    justify-content : start;
+    margin-left: 40px;
+}
+
+.otherChat p {
+    background-color: rgb(46, 46, 46);
+}
+
+.chatDate{
+    font-size : 10px;
+    margin: 0 5px;
+}
+
+.img {
+    width: 30px;
+    height:30px;
+    border-radius: 15px;
+}
+
+.chat{
+    max-width: 230px;
+    display : inline-block;
+    border-radius : 10px;
+    padding: 5px 10px;
+    font-size: 15px;
+    text-align: start;
+    margin-bottom : 0;
+}
+
+.chatImg {
+	margin-top : 0.5rem;
+	width : 230px;
+	height : 250px;
+	border-radius : 25px;
+	object-fit : cover;
+	cursor:pointer;
+}
+
+.room-footer {
+    height: 24%;
+    min-height: 100px;
+}
+
+.chat-input {
+    height: 60%;
+    display: flex;
+    justify-content: center;
+}
+
+.chat-input > textarea {
+    width: 90%;
+    height: 90%;
+    border: 0px;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    resize: none;
+    background-color: black;
+    color:white;
+    font-size: 16px;
+    padding: 2%;
+}
+
+.chat-input > textarea:focus {
+    outline: 0;
+}
+
+.chat-tool {
+    width: 90%;
+    height: 5%;
+    margin: auto;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.chat-tool .upload-file {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    opacity: 0;
+    z-index: 10;
+}
+
+.chat-tool label {
+    font-size: 1.6em;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.chat-tool button {
+    font-size: 16px;
+    font-weight: 700;
+    border: 0px;
+    background-color: transparent;
+    color: white;
+}
+
+/* ============================================================= */
+/* 우측 컨텐츠  */
+/* ============================================================= */
+
+.sub-content {
+    width: 20%;
+    min-width: 400px;
+    height: 100%;
+    
+}
+
+
+
+
+
+
+
+
+
+
+/* ============================================================= */
+/* 채팅방 모달  */
+/* ============================================================= */
+
+#createChatRoom .modal-content {
+    background-color: black !important;
+    border: 1.5px solid rgba(255,255,255,0.3) !important;
+    border-radius: 15px !important;
+    color: white;
+    width: 400px !important;
+}
+
+#createChatRoom .modal-header {
+    text-align: center !important;
+    border-bottom: 1.5px solid rgba(255,255,255,0.3) !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#createChatRoom .modal-header>h5 {
+    font-size: 16px !important;
+}
+
+#createChatRoom .modal-header>form {
+    width: 100%;
+}
+
+#createChatRoom .modal-header input[type=search] {
+    margin-top: 20px;
+    width: 100%;
+    height: 40px;
+    background-color: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 10px;
+    font-size: 14px;
+    padding-left: 20px;
+}
+
+#createChatRoom .modal-header input[type=search]:focus {
+    outline: 0;
+    color: white;
+}
+
+#createChatRoom .modal-body {
+    height: 500px !important;
+    overflow: hidden;
+}
+
+#createChatRoom .modal-body>span {
+    font-size: 14px;
+    color: gray;
+}
+
+#createChatRoom .modal-body .follower-list {
+    margin-top: 10px;
+    height: 100%;
+    padding-bottom: 50px;
+    overflow: auto !important;
+}
+
+#createChatRoom .modal-body .follower-list dt {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-top: 18px;
+    justify-content:space-between;
+}
+
+#createChatRoom .follower-list dt img {
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+}
+
+#createChatRoom .follower-list dt label {
+    font-size: 15px;
+    font-weight: 500;
+    margin-left: 18px;
+    color: lightgray;
+}
+
+#createChatRoom .follower-list dt input[type=checkbox] {
+    width: 18px;
+    height: 18px;
+    border: 1px solid rgba(115,115,115, 0.3) !important;
+    border-radius: 9px !important;
+    background-color: transparent !important;
+}
+
+#createChatRoom .modal-footer {
+    border: 0 !important;
+}
+
+#createChatRoom .modal-footer button {
+    padding: 5px 15px !important;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255, 0.3) !important;
+    color: lightgray;
+    background-color: transparent !important;
+}
+
+#createChatRoom .modal-footer button:hover {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    transition: all .35s;
+}
+
+
+
+/* ============================================================= */
+/* 피드 모달  */
+/* ============================================================= */
+
+#feedDetail>.modal-dialog> .modal-content {
+    border : 1px solid rgba(255,255,255,0.3)!important;
+    background-color: rgb(0, 0, 0) !important;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-header {
+    width: 65% !important;
+    /* margin-right: 5% !important; */
+    border-bottom: 1px solid rgba(255,255,255,0.3) !important;
+    border-right: 1px solid rgba(255,255,255,0.3) !important;
+    position: relative;
+}
+
+#feedDetail>.modal-dialog .modal-user-profile {
+    width: 680px;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content : space-between;
+    align-items: center;
+    margin-left: 10px;
+}
+
+#feedDetail>.modal-dialog .modal-user-profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    margin-left: 10px;
+    background-color: white;
+}
+
+#feedDetail>.modal-dialog .modal-user-profile>div>span:nth-child(2) {
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.modal-user-profile>div>span:nth-child(2):hover {
+    text-decoration: underline;
+}
+
+.modal-user-profile>span {
+    font-size: 35px;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+
+.modal-close {
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border: 0px;
+    color: white;
+    font-weight: 500;
+    font-size: 26px;
+}
+
+
+.modal-user-profile .modal-more-options {
+    display: none;
+    position: absolute;
+    right: 20px;
+    top: 50px;
+    width: 160px;
+    z-index: 50;
+    overflow: hidden;
+}
+
+.modal-more-options>div {
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 15px;
+    background-color: black;
+    line-height: 30px;
+}
+
+.modal-more-options dl {
+    margin: 15px 15px;
+    font-size: 13px;
+    line-height: 35px;
+}
+
+.modal-more-options dt {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    padding: 3px 0 0 6px;
+    transition: all .25s;
+    
+}
+
+.modal-more-options dt:hover { 
+    transition: all .25s;
+    background-color: rgba(115,115,115, 0.4);
+    border-radius: 10px;
+}
+
+.modal-more-options span {
+    font-size: 25px;
+    font-weight : 500;
+}
+
+.modal-more-options a {
+    margin-left: 10px;
+}
+
+
+.modal-more-options .follow-control-js div{
+   display : flex;
+   align-items : center;
+}
+
+
+#feedDetail>.modal-dialog>.modal-content .modal-body {
+    display: flex;
+    height: 650px;
+    /* border-top: 1px solid rgba(255,255,255,0.3); */
+    padding: 0 !important;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body {
+    width: 65%;
+    border-right: 1px solid rgba(255,255,255,0.3);
+}
+
+#feedDetail .clickable-svg .bi-heart-fill {
+    color: red;
+}
+
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body img{
+    width: 100%;
+    margin: 0 auto;
+    height: 430px;
+    object-fit:contain;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body .feed-tools {
+    border-top: 1px solid rgba(255,255,255,0.3) !important;
+    margin: 5px auto 0;
+    padding: 15px;
+    color:white;
+    display: flex;
+    align-items: center;
+}
+
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body .feed-tools svg {
+    margin-left: 10px;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body .feed-tools .clickable-svg:nth-child(1) {
+    cursor: pointer;
+    z-index: 10;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body .feed-tools .clickable-svg:nth-child(2) {
+    margin-left: 20px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body .feed-tools .clickable-svg:nth-child(3) {
+    font-size: 25px;
+    z-index: 10;
+    margin-left: 80%;
+    cursor: pointer;
+}
+
+#feedDetail>.modal-dialog>.modal-content .more-options .choice-control-js svg{
+	position:absolute;
+	top : 27px;
+	left : 20px;
+	}
+
+#feedDetail>.modal-dialog>.modal-content .choice-control-js a{
+	margin :0 0 0 32px;
+}
+
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body .feed-text {
+    width: 91%;
+    margin: auto;
+    color: rgb(179, 179, 179);
+    font-size: 13px;
+    line-height: 24px;
+    word-wrap: break-word;
+    margin-left: 20px;
+}
+
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body .feed-text span:nth-child(3) {
+    width: 100%;
+    font-size: 15px;
+    color: white;
+}
+
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer {
+    width: 35%;
+    padding-bottom: 20px;
+    position: relative;
+}
+
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-wrap{
+    width: 100%;
+    height: 110%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    top: -70px;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-middle {
+    width: 100%;
+    height: 100%;
+    margin: 10px auto;
+    overflow-y: auto;
+    height: 80vh;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-middle dl {
+    margin: 20px 0 20px;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-middle dt {
+    margin: auto;
+    width: 90%;
+    display: flex;
+    height: 50px;
+    padding: 2px 10px;
+    align-items: center;
+    transition: all .25s;
+    margin-top : 0.3rem;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-middle dt:hover {
+    background-color: rgba(115,115,115, 0.2);
+    transition: all .25s;
+    border-radius: 15px;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-middle img{
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-list {
+    display: flex;
+    margin-left: 15px ;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    font-size: 14px;
+    color: lightgray;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-list span:last-child {
+    color: gray;
+    font-size: 13px;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-bottom {
+    width: 93%;
+    padding-top: 6px;
+    margin: 5px auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-bottom input {
+    margin-top: 10px;
+    width: 85%;
+    height: 33px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.3);
+    padding-left: 10px;
+    background-color: transparent;
+    color: white;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-bottom input:focus{
+    outline: 0;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-bottom button {
+    margin-top: 10px;
+    height: 33px;
+    background-color: transparent;
+    color: lightgray;
+    border: 0;
+}
+
+#feedDetail>.modal-dialog>.modal-content .noReply {
+	width : 100%;
+	display : flex;
+	align-items : center;
+	justify-content : center;
+	margin-top : 300px;
+	font-size : 14px;
+	color : gray;
+	
+}
+
+
+/* ============================================================= */
+/* 공유 모달  */
+/* ============================================================= */
+
+#shareTool .modal-content {
+    background-color: black !important;
+    border: 1.5px solid rgba(255,255,255,0.3) !important;
+    border-radius: 15px !important;
+    color: white;
+    width: 400px !important;
+}
+
+#shareTool .modal-header {
+    text-align: center !important;
+    border-bottom: 1.5px solid rgba(255,255,255,0.3) !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#shareTool .modal-header>h5 {
+    font-size: 16px !important;
+}
+
+#shareTool .modal-header>form {
+    width: 100%;
+}
+
+#shareTool .modal-header input[type=search] {
+    margin-top: 20px;
+    width: 100%;
+    height: 40px;
+    background-color: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 10px;
+    font-size: 14px;
+    padding-left: 20px;
+}
+
+#shareTool .modal-header input[type=search]:focus {
+    outline: 0;
+    color: white;
+}
+
+#shareTool .modal-body {
+    width: 100%;
+    height: 500px !important;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+#shareTool .list-btn {
+    width: 100%;
+    display: flex;
+    text-align: center;
+}
+
+#shareTool .modal-body .list-btn span {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 40px;
+    width: 50%;
+    border: 1px solid rgba(255,255,255,0.3);
+    font-size: 14px;
+    color: gray;
+}
+
+#shareTool .modal-body .list-btn>span:hover {
+    color:black;
+    background-color: rgb(204, 204, 204) !important;
+    transition: all .35s;
+}
+
+#shareTool .modal-body .lists {
+    overflow: auto !important;
+}
+
+#shareTool .focus-btn {
+    color:black !important;
+    background-color: rgb(204, 204, 204) !important;
+    transition: all .35s;
+}
+
+#shareTool .modal-body .follower-list,
+#shareTool .modal-body .chatting-list {
+    margin-top: 10px;
+    height: 100%;
+    padding-bottom: 50px;
+}
+
+#shareTool .modal-body .follower-list dt,
+#shareTool .modal-body .chatting-list dt {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content : space-between;
+    margin-top: 18px;
+}
+
+#shareTool .follower-list dt img{
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+}
+
+#shareTool .chatting-list dt img {
+	width: 17px;
+    height: 17px;
+    border-radius: 18px;
+}
+
+#shareTool .follower-list dt label,
+#shareTool .chatting-list dt span{
+    font-size: 15px;
+    font-weight: 500;
+    margin-left: 18px;
+    color: lightgray;
+}
+
+#shareTool .follower-list dt input[type=checkbox],
+#shareTool .chatting-list dt input[type=checkbox] {
+    width: 15px;
+    height: 15px;
+    border: 1px solid rgba(115,115,115, 0.3) !important;
+    border-radius: 9px !important;
+    background-color: transparent !important;
+}
+
+#shareTool .follower-list dt>div,
+#shareTool .chatting-list dt>div {
+	display:flex;
+}
+
+#shareTool .userCount {
+	width: 36px;
+    height: 36px;
+	display : grid;
+	grid-template-rows:repeat(2, 17px);
+	grid-template-columns:repeat(2, 17px);
+	gap : 1px;
+	justify-content : center;
+	align-items : center;
+	overflow:hidden;
+}
+
+
+#shareTool dt .titleWrap {
+	width : 250px;
+	white-space:nowrap;
+	overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+#shareTool .modal-footer {
+    border: 0 !important;
+}
+
+#shareTool .modal-footer button {
+    width: 100px;
+    padding: 5px 15px !important;
+    border-radius: 7px;
+    border: 1px solid rgba(255,255,255, 0.3) !important;
+    color: lightgray;
+    background-color: transparent !important;
+}
+
+#shareTool .modal-footer button:hover {
+    color:black;
+    background-color: rgb(204, 204, 204) !important;
+    transition: all .35s;
+}
+
+.chatting-share-modal{
+	margin-top:110px !important;
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2023-9-15 22:53:7
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation scale-up-center
+ * ----------------------------------------
+ */
+@-webkit-keyframes scale-up-center {
+  0% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@keyframes scale-up-center {
+  0% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+
+
+.scale-up-center {
+	-webkit-animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+	        animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+.chat_alarm_modal{
+	margin-top:6% !important;
+}
+
+.main-HashTag{
+	margin-top: 3px;
+    color: rgb(124, 124, 158) !important;
+    cursor: pointer;
+}

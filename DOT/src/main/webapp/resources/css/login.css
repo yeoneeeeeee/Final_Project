@@ -1,0 +1,277 @@
+@charset "UTF-8";
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+/*============================================== 로그인페이지 ==================================================*/
+
+body {
+    margin: 0;
+    box-sizing: border-box;
+    width: clac(100vw - (100vw - 100%));
+    background-color: black;
+    color: white;
+    background-image: url('../images/6.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Pretendard';
+}
+
+/*===============================================================================================*/
+#login-content-wrap {
+    display: flex;
+    justify-content: center;
+    width: 85vw;
+    height: 60vh;
+    margin: 7vh 25vh 15vh;
+    align-items: center;
+    z-index: 5;
+}
+
+#login-content {
+    width: 38vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10%;
+    z-index: 5;
+}
+.login_logo img {
+    width: 500px;
+}
+
+.login_logo {
+    margin-right: 3%;
+    margin-top: 8%;
+    z-index: 5;
+}
+
+#login-content > h1 {
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.form-control {
+    height: 50px !important;
+    z-index: 5;
+}
+.pwd_find a {
+    text-decoration: none;
+    cursor: pointer;
+    color: white;
+    z-index: 5;
+}
+.pwd_find a:hover {
+    color: lightgray !important;
+}
+.pwd_find {
+    text-align: center;
+    margin-top: 5%;
+}
+#login_content > h3 {
+    font-weight: bold;
+    margin-top: 10vh;
+    z-index: 5;
+}
+
+#login-form form {
+    display: flex;
+    justify-content: center;
+    z-index: 5;
+}
+#login-form h6 {
+    font-weight: bold;
+    z-index: 5;
+}
+#login-width {
+    width: 20vw;
+    z-index: 5;
+}
+.login-min {
+    min-width: 400px;
+    font-size: 17px;
+}
+.form-floating {
+    margin: 0 0 15px 0;
+}
+.form-floating [name='userPwd'] {
+    margin: 0 0 30px 0;
+}
+
+#login-width > button {
+    margin: 5px 0;
+}
+/*모달*/
+.close_btn {
+    background-color: black;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+.modalstyle {
+    background-color: black;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    margin-top:120px;
+}
+.modal-header{
+	border-bottom:0px !important;
+}
+.modal-footer{
+	border-top:1px solid rgba(255, 255, 255, 0.3) !important;
+}
+.modal-bottom {
+    text-align: center;
+    justify-content: center;
+}
+.close_btn_style {
+    border-radius: 0.5rem;
+    background-color: black;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+#btncolor {
+    background-color: black;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+#btncolor:hover {
+    opacity: 0.5;
+}
+
+/*===============================================================================================*/
+@keyframes fall {
+    0% {
+        opacity: 1;
+        top: 0;
+        transform: rotate(0deg);
+    }
+    50% {
+        opacity: 0.7;
+        top: 50%;
+        transform: rotate(-100deg);
+    }
+    100% {
+        opacity: 0.4;
+        top: 90%;
+        transform: rotate(120deg);
+    }
+}
+@keyframes left01 {
+    0% {
+        margin-left: 0;
+    }
+    50% {
+        margin-left: -25%;
+    }
+    100% {
+        margin-left: -50%;
+    }
+}
+#leaf01 {
+    animation-duration: 9s, 9s;
+    left: 30%;
+    animation-delay: 0s;
+}
+#leaf02 {
+    animation-duration: 12s, 12s;
+    left: 50%;
+    animation-delay: 2s;
+}
+#leaf03 {
+    animation-duration: 22s, 22s;
+    left: 40%;
+    animation-delay: 3s;
+}
+#leaf04 {
+    animation-duration: 14s, 14s;
+    left: 81%;
+    animation-delay: 1.5s;
+}
+#leaf05 {
+    animation-duration: 17s, 17s;
+    left: 60%;
+    animation-delay: 6s;
+}
+#leaf06 {
+    animation-duration: 16s, 16s;
+    left: 77%;
+    animation-delay: 7s;
+}
+#leaf07 {
+    animation-duration: 13s, 13s;
+    left: 90%;
+    animation-delay: 4.5s;
+}
+#leaf08 {
+    animation-duration: 9s, 9s;
+    left: 89%;
+    animation-delay: 1.5s;
+}
+#leaf09 {
+    animation-duration: 11s, 11s;
+    left: 13%;
+    animation-delay: 2s;
+}
+#leaf10 {
+    animation-duration: 7s, 7s;
+    left: 92%;
+    animation-delay: 3s;
+}
+#leaf11 {
+    animation-duration: 15s, 15s;
+    left: 34%;
+    animation-delay: 5.5s;
+}
+#leaf12 {
+    animation-duration: 10s, 10s;
+    left: 67%;
+    animation-delay: 0.5s;
+}
+#leaf13 {
+    animation-duration: 9s, 9s;
+    left: 81%;
+    animation-delay: 2s;
+}
+#leaf14 {
+    animation-duration: 8s, 8s;
+    left: 50%;
+    animation-delay: 4s;
+}
+
+.leaf {
+    position: absolute;
+    top: -10%;
+    animation-name: fall, left01;
+    animation-timing-function: linear;
+    animation-direction: normal;
+    animation-iteration-count: infinite;
+    z-index: 0;
+}
+.blackbox {
+    width: 100%;
+    height: 10%;
+  	  background-color: black;
+    position: absolute;
+    z-index: 5;
+    margin-top: -7%;
+}
+
+/* swal alert 창 css */
+.swal-modal {
+    background-color: black;
+    border: 1px solid rgba(255,255,255,0.3);
+  	margin-top : -6%;
+  	padding-bottom:20px;
+}
+.swal-text {
+    text-align: center;
+    color: white;
+ 	font-size:20px;
+ 	
+}
+.swal-title {
+    text-align: center;
+    color: white;
+    
+}
+.swal-button-container{
+	display:flex;
+	justify-content : center;
+}

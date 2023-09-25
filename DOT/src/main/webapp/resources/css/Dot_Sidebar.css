@@ -1,0 +1,416 @@
+font-face {
+    font-family: 'GmarketSans';
+    font-weight: 300;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.eot?#iefix') format('embedded-opentype'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansLight.ttf') format('truetype');
+    font-display: swap;
+}
+@font-face {
+    font-family: 'GmarketSans';
+    font-weight: 500;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.eot?#iefix')
+            format('embedded-opentype'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansMedium.ttf') format('truetype');
+    font-display: swap;
+}
+@font-face {
+    font-family: 'GmarketSans';
+    font-weight: 700;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.eot?#iefix') format('embedded-opentype'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSansBold.ttf') format('truetype');
+    font-display: swap;
+}
+* {
+    text-decoration: none;
+    box-sizing: border-box;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    font-family: 'GmarketSans';
+    font-weight: 500;
+    border: 0px solid grey;
+    box-sizing: border-box;
+    color: white;
+}
+body {
+    margin : 0;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+
+
+.wrap {
+    height: 100vh;
+    overflow: hidden;
+    background-color: black;
+}
+
+.wrap dt a,
+.wrap div a,
+.wrap a > span {
+    text-decoration: none;
+    color: white;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+
+.sidebar-wrap {
+    position: absolute;
+}
+
+.br-bottom {
+    width: 100%;
+    border-bottom: 2px solid rgba(155,155,155, 0.4);
+}
+
+.sidebar {
+    width: 300px;
+    position: fixed;
+    height: 100%;
+    top: 0 ;
+    left: -300px;
+    opacity: 0;
+    z-index: 1;
+    transition: all .35s;
+    color: white;
+}
+
+.sidebar-logo img{
+    position: absolute;
+    width: 150px;
+    top: 25px;
+    left: 100px;
+}
+
+.side-content {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 90px;
+    width: 90%;
+    overflow-y: auto;
+    max-height: 100%;
+    background-color: black;
+}
+
+.tools.br-bottom:nth-child(3) {
+    margin-top: 15px;
+}
+.tools.br-bottom:nth-child(4) {
+    margin-top: 20px;
+}
+
+.tools dt {
+    display: flex;
+}
+
+.tools a {
+    padding-left: 15px;
+    font-size: 35px;
+    font-weight: 480;
+    line-height: 50px;
+    cursor: pointer;
+    width: 90%;
+}
+
+.tools dt:hover {
+    background-color: rgba(115,115,115, 0.2);
+    width: 100%;
+    border-radius: 15px;
+}
+
+.tools span {
+    font-size: 16px;
+    font-weight: 400;
+    vertical-align:bottom;
+}
+
+
+
+
+
+
+
+
+
+.friends {
+    margin: 0 auto;
+    margin-top: 30px;
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+.friends>span {
+    padding-left: 15px;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.friends-list {
+    margin-top: 20px;
+}
+
+.friend-profile {
+    height: 55px;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    position: relative;
+    cursor: pointer;
+}
+
+.friend-profile:hover {
+    background-color: rgba(115,115,115, 0.2);
+    border-radius: 15px;
+}
+
+.profile-img>img {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+}
+
+.profile-name {
+	display:flex;
+	align-items:center;
+}
+
+.profile-name>span {
+    margin-left: 10px;
+}
+
+.friend-profile>label {
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    position: absolute;
+    right: 20px;
+}
+.checkoff{
+	background-color:#b01b1b;
+}
+.checkon{
+	background-color:lightgreen;
+}
+
+.more-friends {
+    display: flex;
+    font-weight: 400;
+    justify-content: space-between;
+}
+
+.more-friends>span:nth-child(2) {
+    position: absolute;
+    right: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.footer {
+    margin: auto;
+    width: 90%;
+    margin-top: 20px;
+    padding-bottom: 120px;
+    font-size: 14px;
+}
+
+.footer span {
+    color: rgba(195,195,195, 0.7);
+    line-height: 23px;
+    cursor: pointer;
+    margin-bottom: 2000px;
+}
+
+.footer div {
+    margin-top: 40px;
+}
+
+.footer p {
+    color: rgba(185,185,185, 0.5);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ============================================================= */
+/* 숏컷 사이드바 */
+/* ============================================================= */
+
+
+.sidebar-shortcuts {
+    width: 80px;
+    height: 100%;
+    /* background-color: #222; */
+    position: fixed;
+    top: 0 ;
+    left: 0;
+    opacity: 1;
+    transition: all .15s
+}
+
+.shortcuts-wrap {
+    position: absolute;
+    top: 80px;
+    width: 100%;
+    height: 90%;
+    /* min-height: 800px; */
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.shortcuts-wrap * {
+    color:white;
+    text-decoration: none;
+    margin: 0;
+}
+
+.sidebar-shortcuts a {
+    font-size: 35px;
+    line-height: 50px;
+    width: 100%;
+    cursor: pointer;
+    text-align: center;
+}
+
+.sidebar-shortcuts h5 {
+    text-align: center;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+.sidebar-shortcuts dl:last-child {
+    margin-bottom: 10px;
+}
+
+
+.sidebar-shortcuts dt:hover{
+    background-color: rgba(115,115,115, 0.2);
+    width: 100%;
+    border-radius: 15px;
+}
+
+
+
+
+/* ============================================================= */
+/* 사이드바 효과*/
+/* ============================================================= */
+
+input[id="menuicon"] {
+    display: none;
+    position: absolute;
+}
+
+input[id="menuicon"] + label {
+    display: block;
+    width: 40px;
+    height: 20px;
+    /* position: relative; */
+    position: fixed;
+    cursor: pointer;
+    z-index: 2;
+    top: 30px;
+    left: 20px;
+}
+
+input[id="menuicon"] + label span {
+    display: block;
+    position: absolute;
+    width:100%;
+    height: 2px;
+    border-radius: 30px;
+    background-color: rgb(255,255,255);
+    transition: all .35s;
+}
+
+input[id="menuicon"] + label span:nth-child(1) {
+    top: 0px;
+}
+
+input[id="menuicon"] + label span:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+input[id="menuicon"] + label span:nth-child(3) {
+    bottom: 0;
+}
+
+input[id="menuicon"]:checked + label {
+    z-index: 2;
+}
+
+input[id="menuicon"]:checked + label span:nth-child(1) {
+    top:50%;
+    transform: translateY(-50%) rotate(45deg);
+}
+
+input[id="menuicon"]:checked + label span:nth-child(2) {
+    opacity: 0;
+}
+
+input[id="menuicon"]:checked + label span:nth-child(3) {
+    top:50%;
+    transform: translateY(-50%) rotate(-45deg);
+}
+
+input[id="menuicon"]:checked + label + .sidebar {
+    left: 0;
+    opacity: 1;
+}
+
+input[id="menuicon"]:checked + label ~ .sidebar-shortcuts  {
+    opacity: 0;
+}
+
+
+
+
+

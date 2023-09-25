@@ -1,0 +1,459 @@
+@import url('https://fonts.cdnfonts.com/css/charge-vector');
+@import url('https://webfontworld.github.io/SCoreDream/SCoreDream.css');
+
+body {
+    margin : 0;
+    box-sizing: border-box;
+    background-color: black !important;
+    color: white !important;
+    height: 2000px;
+}
+
+.wrap {
+    height: 100%;
+}
+
+
+/* ============================================================= */
+/* 헤더바 */
+/* ============================================================= */
+
+.header {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    background-color: black;
+    position: absolute;
+}
+.logo {
+    margin-left: 60px;
+}
+
+.logo img {
+    margin-left: 90px;
+    width: 150px;
+    cursor: pointer;
+}
+
+
+.header .header-form {
+    width: 180px;
+    margin-right: 100px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.header .header-form a {
+    text-decoration: none;
+    color: lightgray;
+    transition: all .35s;
+    font-weight: 700;
+    font-family: 'Charge Vector Bold', sans-serif;
+}
+
+.header .header-form a:hover {
+    color: white;
+    transition: all .35s;
+}
+
+
+
+
+/* ============================================================= */
+/* 컨텐츠 */
+/* ============================================================= */
+
+.start-wrap {
+    position: fixed;
+    z-index: 12;
+    height: 100vh;
+    width: 100%;
+    background-color: black;
+}
+
+.end-wrap {
+    animation: end 1.5s;
+}
+
+@keyframes end {
+    0% {
+        background-color: black;
+        opacity: 1;
+    }
+    100% {
+        background-color: black;
+        opacity: 0;
+        z-index: -1;
+    }
+}
+
+.section-container {
+    width: 100%;
+    height: 100vh;
+}
+
+.section1-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.sec1-header {
+    border-color: transparent;
+    width: 0px;
+    height: 400px;
+    font-weight: 800;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    line-height: 80px;
+    padding: 50px 0;
+    position: fixed;
+    z-index: 12;
+}
+
+.sec1-header-effect {
+    border: 5px solid rgb(255, 255, 255);
+    border-left-color: transparent;
+    border-right-color: transparent;
+    width: 80%;
+    transition: all 1.1s;
+}
+
+.sec1-t1,
+.sec1-t2,
+.sec1-t3 {
+    width: 1000px;
+    opacity: 0;
+    text-align: center;
+    font-size: 47px;
+    font-family: 'Charge Vector Bold', sans-serif;
+}
+
+.sec1-text {
+    opacity: 1;
+    text-align: center;
+    transition: all .35s;
+}
+
+.section2-wrap {
+    width: 100%;
+    background-color: black;
+    position: relative;
+    padding-top: 100px;
+    z-index: 10;
+}
+
+
+
+.sec2-header {
+    width: 100%;
+    height: 150px;
+    border-top: 5px solid white;
+    border-bottom: 5px solid white;
+    margin-top: 300px;
+    overflow: hidden;
+    font-size: 60px;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space:nowrap;
+    position: relative;
+    
+}
+
+.sec2-t {
+	font-family: 'Charge Vector Bold', sans-serif;
+    position: absolute;
+    animation: slide-right 35s linear  infinite;
+}
+
+@keyframes slide-right {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.sec2-body {
+    width: 100%;
+    display: flex;
+    position: relative;
+}
+
+
+.sec2-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+}
+
+
+.left-description {
+    width: 40%;
+    height: 100vh;
+    padding: 50px 0 50px 100px;
+    font-size: 60px;
+    top:0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fixed {
+    position: fixed;
+}
+
+.sticky {
+    position: sticky;
+    bottom: 0;
+}
+
+.right-description {
+    width: 60%;
+    padding: 350px 100px 100px;
+    font-size: 60px;
+    left: 50%;
+}
+
+.left-t1,
+.left-t2,
+.left-t3 {
+    font-weight: 500;
+    position: absolute;
+    width: 80%;
+    height: 60%;
+    padding: 100px 20px
+}
+
+.t1-head,
+.t2-head,
+.t3-head {
+	font-size : 3.2rem;
+	font-family: 'SCoreDream';
+}
+
+.t1-body,
+.t2-body,
+.t3-body {
+	font-weight : 400;
+	margin-top : 20px;
+	font-size : 1.3rem;
+	font-family: 'SCoreDream';
+}
+
+.t1-foot,
+.t2-foot,
+.t3-foot {
+	margin-top :50px;
+	font-size : 1.3rem;
+	cursor : pointer;
+	font-weight : 400;
+	font-family: 'SCoreDream';
+}
+
+.show-text {
+    opacity: 1;
+    transition: all .25s;
+}
+
+.hide-text {
+    opacity: 0;
+    transition: all .25s;
+}
+
+.right-img1,
+.right-img2,
+.right-img3 {
+    width: 100%;
+    height: 100vh;
+    padding: 100px 50px;
+}
+
+.section3-wrap {
+    width: 100%;
+    min-width : 1900px;;
+    height: 1600px;
+    overflow : hidden;
+}
+
+.sec3-container {
+	width : 100%;
+	height : 800px;
+	margin-top : 180px;
+}
+
+.sec3-top {
+	font-family: 'Charge Vector Bold', sans-serif;
+	width : 600px;
+	font-size : 80px;
+	font-weight : 600;
+	padding-left : 80px;
+}
+
+.sec3-body {
+	display : flex;
+	justify-content : space-evenly;
+}
+
+
+.profil-box {
+	position : relative;
+	margin : 50px 0;
+	width : 400px;
+	height : 600px;
+	border : 3px solid #4d4d4d;
+	transition : all .35s;
+}
+
+.sec2-container .img-box {
+    width: 800px;
+    display : flex;
+    align-items : end;
+    justify-content : center;
+}
+
+.sec2-container .img-box > img {
+    height : 600px;
+	transition : all .35s;
+}
+
+.sec3-container .img-box {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    overflow: hidden;
+    display : flex;
+    align-items : end;
+    justify-content : center;
+}
+
+.sec3-container .img-box > img {
+	width : 100%;
+	transition : all .35s;
+}
+
+.profil-box:hover {
+	background-color : rgba(220,220,220,0.3);
+}
+
+.profil-box:hover img {
+	scale : 1.15;
+}
+
+.profil-box:hover > .name-box {
+	opacity : 1;
+	right : -170px;
+}
+
+.name-box {
+	position : absolute;
+	transform : rotate(-90deg);
+	right : -200px;
+	bottom : 220px;
+	width : 100%;
+	font-weight : 500;
+	transition : all .35s;
+	opacity : 0;
+}
+
+.kor-name {
+	color : #eaeaea;
+	font-size : 14px;
+	font-family: 'SCoreDream';
+	font-weight : 300;
+	
+}
+
+.en-name {
+	color : #c2c2c2;
+	margin-left : 10px;
+	font-size : 13px;
+	font-family: 'Charge Vector', sans-serif;
+}
+
+.section4-wrap {
+	position : relative;
+	z-index : 5;
+}
+
+.section4-wrap img {
+	width : 100%;
+	height : 990px;
+	object-fit: cover;
+	filter : brightness(45%);
+}
+
+.section4-container {
+	position : absolute;
+	top : 32%;
+	left : calc(100% /2 - 500px);
+	width : 1000px;
+	height : 600px;
+}
+
+
+.section4-container .sec4-txt {
+	font-family: 'SCoreDream';
+	text-align : center;
+	display : flex;
+	flex-direction : column;
+	align-items : center;
+	justify-content : space-evenly;
+}
+
+.t4-top {
+	font-size : 36px;
+	line-height : 70px;
+	font-weight : 500;
+	opacity: 0;
+}
+
+.sec4-txt>a {
+	margin-top : 190px;
+	width : 400px;
+	height : 80px;
+	font-size : 25px;
+	line-height : 80px;
+	border: 2px solid rgba(8,8,8,0.9);
+	border-radius : 30px;
+	color : white;
+	text-decoration : none;
+	background-color : rgba(8,8,8,0.9);
+	transition : all .35s;
+}
+
+.sec4-txt>a:hover {
+	color : black;
+	border: 2px solid white;
+	background-color : white;
+}
+
+.ani-slide {
+    animation: fadeInUp 3s;
+    opacity: 1;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 170%, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateZ(0);
+    }
+}

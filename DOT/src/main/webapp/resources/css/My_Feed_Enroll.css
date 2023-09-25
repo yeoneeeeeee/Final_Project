@@ -1,0 +1,309 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+body {
+    margin: 0;
+    box-sizing: border-box;
+    background-color: black;
+    height: 100%;
+    font-family: 'Pretendard';
+}
+
+.wrap {
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ============================================================= */
+/* 컨텐츠 영역 */
+/* ============================================================= */
+.contents {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* ============================================================= */
+/* 메인 컨텐츠 */
+/* ============================================================= */
+
+.main_content {
+    width: 1200px;
+    height: 100%;
+    min-width: 400px;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.main_content * {
+    /* border: 1px solid grey; */
+    color: white;
+}
+
+.main_content .main_container {
+    width: 1140px;
+    height: 755px;
+    margin: 45px 0 0 0;
+    border-radius: 20px;
+    display: flex;
+}
+
+.main_container .slide_container {
+    width: 700px;
+    padding: 25px 0 5px 0;
+    position: relative;
+    display: flex;
+}
+
+.slide_container .add-remove {
+    width: 540px;
+    height: 540px;
+    overflow: hidden;
+}
+
+.main_container .buttons {
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.main_container .buttons .add {
+    font-size: 50px;
+    font-weight: 100;
+    color: grey;
+    cursor: pointer;
+    margin: 0;
+}
+
+.main_container .buttons .add:hover {
+    color: white !important;
+    border-radius: 25px;
+}
+
+.main_container .buttons .remove {
+    position: absolute;
+    font-size: 40px;
+    color: grey;
+    top: 30px;
+    right: 170px;
+    z-index: 6;
+}
+
+.slide_container .slick-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+.slide_container .slick-prev {
+    position: absolute;
+    background-color: transparent;
+    border-radius: 20px;
+    width: 30px;
+    height: 30px;
+    border: 1px solid grey;
+    z-index: 5;
+    background-color: rgba(26, 26, 26, 0.8);
+    top: 270px;
+}
+
+.slide_container .slick-next {
+    position: absolute;
+    background-color: transparent;
+    border-radius: 20px;
+    width: 30px;
+    height: 30px;
+    border: 1px solid grey;
+    z-index: 4;
+    top: 270px;
+    left: 510px;
+    background-color: rgba(26, 26, 26, 0.8);
+}
+
+.slide_container img {
+    width: 100%;
+    height: 540px;
+    object-fit: contain;
+}
+
+.slick-prev:before,
+.slick-next:before {
+    color: black;
+}
+
+.main_container .slide_list_wrap {
+    width: 540px;
+    display: flex;
+}
+
+.main_container .slide_list {
+    width: 790px;
+    height: 159px;
+    display: flex;
+    overflow-x: auto;
+}
+
+.main_container .slide_list .thumbnail {
+    position: relative;
+    padding: 5px;
+}
+
+.main_container .slide_list .thumbnail img {
+    width: 100px;
+    height: 120px;
+    object-fit : fill;
+}
+
+.main_container .slide_list .remove {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+
+.main_container .slide_list img {
+    object-fit: contain;
+    width: 100%;
+    height: 150px;
+}
+
+.main_content .update_container {
+    width: calc(1140px - 730px);
+    height: 100%;
+    padding: 15px;
+}
+
+.update_container > .id_container {
+    width: 100%;
+    height: 70px;
+    display: flex;
+}
+
+.update_container .userid_img {
+    width: 70px;
+    height: 70px;
+    padding: 10px;
+}
+
+.update_container .userid_img img {
+    width: 45px;
+    height: 45px;
+    border-radius: 22.5px;
+}
+
+.update_container .user_id {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.update_container h5 {
+    font-size: 18px;
+    padding-left: 15px;
+}
+
+.update_container .feed_container {
+    width: 100%;
+    height: 440px;
+}
+
+.update_container .feed_container > textarea {
+    resize: none;
+    border-radius: 15px;
+}
+
+.update_container .text {
+    width: 374px;
+    height: 440px;
+    background-color: black;
+    padding: 10px;
+}
+
+.text{
+	border : 1px solid grey;
+}
+
+.update_container .hash_container {
+    width: 100%;
+    height: 150px;
+}
+.update_container .hashtag {
+    width: 374px;
+    margin-top: 10px;
+    border: 1px solid grey;
+    background-color: black;
+    padding: 10px;
+    border-radius: 15px;
+    padding-bottom: 100px;
+}
+
+.update_container .confirm_container {
+    width: 100%;
+    height: 60px;
+    display: flex;
+}
+
+.update_container .cancle_btn {
+    width: 40%;
+}
+
+.update_container .confirm_btn {
+    width: 60%;
+    height: 100%;
+    padding: 12px;
+    display: flex;
+    justify-content: end;
+}
+
+.update_container .confirm_container button {
+    background-color: black;
+    width: 100px;
+    border-radius: 20px;
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+    margin: 0 5px;
+    border: 1px solid grey;
+}
+
+.update_container .confirm:hover {
+    background-color: #0095f6;
+}
+
+.update_container .cancle:hover {
+    background-color: white;
+    color: black;
+}
+
+/* swal */
+.swal-modal {
+    background-color: black;
+    border: 1px solid white;
+}
+.swal-text {
+    text-align: center;
+    color: white;
+}
+.swal-title {
+    text-align: center;
+    color: white;
+}
+.swal-icon--success:before {
+    display: none;
+}
+.swal-icon--success:after {
+    display: none;
+}
+.swal-icon--success__hide-corners {
+    display: none;
+}
+.swal-footer{
+	display: flex;
+    justify-content: center;
+}
+.btn-box {
+    display: flex;
+    justify-content: center;
+}

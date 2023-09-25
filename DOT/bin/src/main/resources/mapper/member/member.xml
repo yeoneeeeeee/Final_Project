@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="member">
+	
+	<resultMap id="memberResultSet" type="member">
+		<id column="USER_NO" property="userNo"/>
+		<result column="USER_ID" property='userId'/>
+		<result column="USER_PWD" property="userPwd"/>
+		<result column="USER_NAME" property="userName"/>
+		<result column="USER_NICK" property="userNick"/>
+		<result column="USER_PHONE" property="userPhone"/>
+		<result column="USER_EMAIL" property="userEmail"/>
+		<result column="USER_MBTI" property="userMbti"/>
+		<result column="ENROLL_DATE" property="enrollDate"/>
+		<result column="USER_BIRTHDAY" property="userBirthday"/>
+		<result column="ENABLE" property="enable"/>
+		<result column='WB_STATUS' property="wbStatus"/>
+		<result column="STATUS" property="status"/>
+	</resultMap>
+	
+	<resultMap id="imagesResultSet" type="images">
+		<id column="FILE_NO" property="fileNo"/>
+		<result column="FILE_WRITER" property='fileWriter'/>
+		<result column="ORIGIN_NAME" property="originName"/>
+		<result column="CHANGE_NAME" property="changeName"/>
+		<result column="FILE_PATH" property="filePath"/>
+		<result column="STATUS" property="status"/>
+		<result column="FILE_LEVEL" property="fileLevel"/>
+		<result column="FILE_FNO" property="fileFno"/>
+	</resultMap>  
+
+ 	<select id="selectOne" parameterType="String" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER
+		WHERE USER_ID = #{userId} AND STATUS = 'Y'
+	</select>
+	
+	<select id="loginUser" parameterType="member" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER
+		WHERE USER_ID= #{userId} AND USER_PWD = #{userPwd} AND STATUS = 'Y'
+	</select>
+	
+	<select id="idCheck" parameterType="string" resultType="int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE USER_ID= #{userId}
+	</select>
+	
+	<insert id="insertMember" parameterType="member">
+		INSERT INTO MEMBER VALUES(
+			SEQ_MEMBER_NO.NEXTVAL,
+			#{userId},
+			#{userPwd},
+			#{userName},
+			#{userNick},
+			#{userPhone},
+			#{userEmail},
+			#{userMbti},
+			SYSDATE,
+			#{userBirthday},
+			DEFAULT,
+			DEFAULT,
+			DEFAULT
+		)
+	</insert>
+	
+	<select id="selectListImages" parameterType="int" resultMap="imagesResultSet">
+		SELECT *
+		FROM IMAGE
+		WHERE FILE_WRITER = #{userNo}
+			AND FILE_LEVEL = 1
+	</select>
+	
+	<select id="selectListMyImg" parameterType="int" resultMap="imagesResultSet">
+		SELECT *
+		FROM IMAGE
+		WHERE FILE_WRITER = #{userNo}
+			AND FILE_LEVEL = 2
+	</select>
+	
+	<select id="detailMyFeedModal" parameterType="int" resultMap="imagesResultSet">
+		SELECT *
+		FROM IMAGE
+		WHERE FILE_FNO = (
+							SELECT FILE_FNO
+							FROM IMAGE
+							WHERE FILE_NO = #{imgNo}
+							)
+	</select>
+	
+	<select id="sideFriendList" parameterType="int" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER M
+		JOIN FRIEND F ON FRIEND_USER2 = USER_NO
+        LEFT JOIN IMAGE I ON FILE_WRITER = M.USER_NO AND FILE_LEVEL = 1
+		WHERE FRIEND_USER1 = #{userNo}
+		ORDER BY USER_NO DESC
+	</select>
+	
+	<select id="checkMember" parameterType="int" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER
+		LEFT JOIN IMAGE ON FILE_WRITER = USER_NO
+		WHERE USER_NO = #{userNo}  AND FILE_LEVEL = 1
+	</select>
+	
+	<select id="updateMember" parameterType="member">
+		UPDATE MEMBER
+		SET USER_NAME = #{userName},
+		 	 USER_NICK = #{userNick},
+		 	 USER_BIRTHDAY = #{userBirthday},
+		 	 USER_MBTI = #{userMbti},
+		 	 USER_EMAIL = #{userEmail},
+		 	 USER_PHONE = #{userPhone},
+		 	 ENROLL_DATE = SYSDATE
+		WHERE USER_NO = #{userNo}
+	</select>
+	
+	<select id="updateProfileImg" parameterType="member">
+		UPDATE IMAGE
+		SET FILE_PATH = #{filePath},
+			CHANGE_NAME = #{changeName},
+			ORIGIN_NAME = #{originName}
+		WHERE FILE_WRITER = #{userNo} AND FILE_LEVEL = 1
+	</select>
+	
+	<insert id="insertProFileImg">
+		INSERT INTO IMAGE
+		VALUES (SEQ_FILE_NO.NEXTVAL,
+				SEQ_MEMBER_NO.CURRVAL,
+				'DefaultIcon',
+				'DefaultIcon',
+				'DefaultIcon',
+				DEFAULT,
+				1,
+				0
+				
+				)
+	</insert>
+	
+	<update id="changePwd" parameterType="member">
+		UPDATE MEMBER
+		SET USER_PWD = #{userPwd}
+		WHERE USER_NO = #{userNo}
+	</update>
+	
+	<update id="deleteUser" parameterType="member">
+		UPDATE MEMBER
+		SET STATUS = 'N'
+		WHERE USER_NO = #{userNo}
+	</update>
+	
+	<select id="logincheck" parameterType="member"  resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER
+		WHERE USER_ID= #{userId} AND STATUS = 'Y'
+	</select>
+	
+	<update id="loginPwdReset" parameterType="member">
+		UPDATE MEMBER
+		SET USER_PWD = '$2a$10$VC/SNhYAZHbEdNIDOTkfpusMw0m9KeRvUs2lTUVkDU/4J/P9ct5Ke'
+		WHERE USER_ID = #{userId}
+	</update>
+</mapper>
