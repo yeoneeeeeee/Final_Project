@@ -1,5 +1,5 @@
 # [2023] Final_Project (SNS 홈페이지 'DOT.')
-## JSP + SPRINGBOOT 기반의 SNS 사이트
+### JSP + SPRINGBOOT 기반의 SNS 사이트입니다.
 
 <br><br>
 
